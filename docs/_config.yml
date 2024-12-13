@@ -22,9 +22,9 @@ title: Correlation Equals Causation
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Project descripion
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://correlationeqcausation.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
+# baseurl: "" # the subpath of your site, e.g. /blog
+# url: "https://correlationeqcausation.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: jekyllrb
 github_username:  anfindsen
 
 # Build settings
