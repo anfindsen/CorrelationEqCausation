@@ -42,6 +42,9 @@ a
 
 ### Nationality - John
 
+![image](images/oscar-nom-per-country.png)
+![image](images/oscar-nom-per-country.png)
+
 ### Career analysis - Erik
 
 ### Prediction on actor features - Rasmus
