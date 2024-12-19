@@ -56,9 +56,20 @@ The Oscar nominees are clearly concentrated in certain regions. This indicates t
 ### Clustering - Tejas
 
 ### Nationality - John
+How does nationality correlate with being nominated for an Oscar? Let's have a look at the 10 countries with the most Oscar nominations in our cleaned dataset:
 
 ![image](images/oscar-nom-per-country.png)
-![image](images/oscar-nom-per-country.png)
+
+Unsurprisingly, the US is clearly at the top of this list. Here is the same data, with only the US, UK and Others:
+![image](images/oscar-nom-per-country-others.png)
+
+As we can see by these plots, the US is in general overrepresented in our dataset with regards to Oscar nominations. This makes perfect sense, as the movie industry is very centered on America. Our most important question here, however, is how does the Oscar nomination frequency change with nationality? Let's see the previous plot again, but this time adjusted for the total number of movies from each of the categories:
+
+![image](images/oscar-nom-per-country-adjusted.png)
+
+To our surprise, there does not seem to be a clear skew in favor of American actors/movies in our dataset! In fact, actors in British movies tend to be nominated more frequently.
+
+However, this needs to be analyzed more rigorously, and this is where our binomial test enters the picture. TODO write the rest of this
 
 ### Career analysis - Erik
 
