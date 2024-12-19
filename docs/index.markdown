@@ -29,8 +29,19 @@ a
 
 ## Data cleaning - Rasmus
 
+Before looking at the results of our analysis, we need to discuss a limitation of ours: overlap of clean data. As we use data from 3 different sources, the overlap of movies and actors accounts for a fragment of the total data. However, as we want to have equality in the analysis of our features, we need to include the same datapoints for all parts of our analysis. Thus we removed all datapoints with unknown values from our study. Of course this can change the distribution of the data.
+
+On the carousel below you can observe the distribution changes in relevant features before and after dropping. The left plot shows the distribution of all datapoints and the right the distribution of datapoints that were nominated.
+
+<div align="center" style="font-size: 1.3em;">
+Distribution of features before and after data cleaning
+</div>
+
 {% include carousel.html height="50" width="120" unit="%" duration="100" number="1" %}
 
+The distribution of all data changed more drastically for all data than for oscar-nominated data. For example, in the ethnicity feature, indian used to be the most common known ethnicity. However, after cleaning the data it was the second least common value. The number of oscar-nominated indian actors did not reduce however.
+
+We also conducted the Kolmogorov-Smirnov test for all continuous features. With p-value 0.05 and using all data points, changes in distribution were significant for all continuous features (IMDb ratings, height, age, year). However, using nominated only the change in year distribution was significant.
 
 
 # Mathematical methods (Not too heavy, mmaybe put in separate page)
@@ -68,7 +79,17 @@ The Oscar nominees are clearly concentrated in certain regions. This indicates t
 
 ## Logistic regression - Rasmus
 
+Logistic regression is a method for binary classification. It works by essentially mapping linear regression output into a value between 0 and 1 i.e. a probability to belong to either class. So computing linear regression takes 3 steps:
+1. Calculate linear regression
+z = w_0 + w_1 * x_1 + w_2 * x_2 + ... + w_n * x_n
+2. Pass the output through the sigmoid to get a probability
+p = 1 / (1 + exp(-z))
+3. Use a (freely chosen) threshold for classification
+if p >= threshold, predict 1, else 0
 
+Finding the correct weights w_0, w_1, ..., w_n can be done through gradient descent or least squared method.
+
+A useful side product of this method is finding what features have higher weights when predicting a target. Higher weights indicate the importance of that feature towards the target.
 
 
 # Analysis - TODO come up with better headers
@@ -104,15 +125,48 @@ TL;DR: In general, actors in American movies have a higher chance of winning an 
 ### Career analysis - Erik
 
 ### Prediction on actor features - Rasmus
+We explored the possibility to predict whether a person is nominated for an oscar for a movie. We used tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
+
+#### Predicting from personal features
+Firstly, we tried if it is possible to predict being nomintated purely from personal features such as gender, height, ethnicity and age. If that were possible it would indicate that there is a possibility for a bias for or against certain people, not connected to their skill in acting, which would be bad.
+
+However, both the logistic regression and decision tree proved incapable of doing so, even with rebalancing the data the models achieved a maximum F1 score of 0.05. This indicates that we cannot simply tell who will get nominated by how they look like.
 
 
+#### Predicting with all features
+Predicting with all of the features we have led to more promising results. While logistic regression still did not perform, using a decisiontree with undersampling led to our best-performing model (in therms of F1-score) with:
+* Accuracy 0.953
+* Precision 0.196
+* Recall 0.4375
+* F1-score 0.271
 
+While these numbers do not jump off the screen, this model could be used with relative accuracy to predict what actor or actress will next be nominated for an oscar. This specific model would catch 43.75% of the movies before they get nominated, but would only be right 20% of the time.
+
+Extracting the highest feature importance gives us the table:
+
+| Feature | Importance |
+|---|---|
+| average_rating	 | 0.106306 |
+| year | 0.095321 |
+| actor_age | 0.081904 |
+This indicates that there is no one feature widely used to make this prediction.
 
 ## What kind of films should you star in?
 
 ### Genre analysis - Melker
 
 ### Prediction on movie features - Melker (plots)/ Rasmus
+
+Let's look at if it is possible to predict if a movie will be nominated for an oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
+
+From looking at the lineplots depicting movie average rating and number of votes relation to being nominated, a general trend upwards can be seen. However, even at the level of the highest ratings, so few movies get nominated, and we can't say with high confidence, that a well- or often-reviewed movie will get nominated
+<div style="display: flex; gap: 1px; align-items: center;">
+  <img src="images/avg_rating_nominated.png" alt="Average Rating" width="49%" />
+  <img src="images/nr_votes_nominated.png" alt="Number of Votes" width="49%" />
+</div>
+
+Logistic regression was not very performant on this. The best f1-score was reached was with 0.14, with recall 1.0 and accuracy 0.1, meaning the model generally only predicted that movies will be nominated, which is not a good model.
+
 
 
 
