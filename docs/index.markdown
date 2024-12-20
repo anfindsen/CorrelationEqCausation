@@ -216,6 +216,8 @@ This indicates that there is no one feature widely used to make this prediction.
 ## What kind of films should you star in?
 
 ### Genre analysis - Melker
+<iframe src="images/genres_wo_nominations.html" width="300" height="300"></iframe>
+
 
 ### Prediction on movie features - Melker (plots)/ Rasmus
 
