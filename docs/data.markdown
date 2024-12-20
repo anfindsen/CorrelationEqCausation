@@ -14,9 +14,7 @@ carousels:
     - image: nandropping_plots/year.jpg
 ---
 
-# **Data**
-
-## **Data merging**
+### **Data merging**
 For the following analysis we used the CMU dataset containing tables of movies and of characters. The movies and characters have a one-to-many 
 relationship allowing us to connect them. Furthermore, the character table contains a column specifying the actor playing the character. This dataset is supplemented with IMDb dataset to find the ratings for the movies and an dataset containing Oscar nomination.
 
@@ -24,7 +22,7 @@ Further we introduce three augmented features: Number of movies starred in, aver
 
 The Oscars are comprised of many different cateogries. However, in the coming analysis we are interested in the following three categories for both men and women: actor/actress, actor/actress in a leading role, and actor/actress in a supporting role. 
 
-## **Data cleaning**
+### **Data cleaning**
 
 Before looking at the results of our analysis, we need to discuss a limitation of ours: overlap of clean data. As we use data from 3 different sources, the overlap of movies and actors accounts for a fragment of the total data. However, as we want to have equality in the analysis of our features, we need to include the same datapoints for all parts of our analysis. Thus we removed all datapoints with unknown values from our study. Of course this can change the distribution of the data.
 
