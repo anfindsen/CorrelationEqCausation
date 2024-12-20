@@ -182,6 +182,11 @@ Observing the plot above our initial conclusion is that actors going on to be no
 
 From the table above we conclude that actors who go on to be Oscar nominated star in more crically acclaimed movies than actors who do not end up being nominated. However, the comercial success of movies starred in seem to not matter for receiving Oscar nomination as the P-value is 0.82 and thus we accept the null hypothesis of the samples means being equal. A reason for this may be that some genres of movies appeal to the critics but not to the masses.
 
+
+#### **Actor Network** - Melker
+What makes a great movie is seldom a single performance, it often an ensemble of great performances enhancing each other. Hence we make a deep dive into the actor relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful plotting the graph of all actors as it has over 23 000 nodes. We instead count the number of relationships for nominated and not nominated actors which turn out to 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having stared in 8.9 movies while not nominated actors have on average starred in 7.9 movies. From this we see three options: 1. Nominated actors perofmr in movies with more actors, creatingmore relationships per movie starred in. 2. Nominated actors are in more popular movies where more actors are registered and hence in the dataset. 3. TBD
+
+Additionally, it appears that all nominated actors have a relationship to atleas another oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
 ### **Prediction on actor features** - Rasmus
 We explored the possibility to predict whether a person is nominated for an oscar for a movie. We tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
 
@@ -225,7 +230,7 @@ From looking at the lineplots depicting movie average rating and number of votes
 
 Logistic regression was not very performant on this. The best f1-score was reached was with 0.14, with recall 1.0 and accuracy 0.1, meaning the model generally only predicted that movies will be nominated, which is not a good model.
 
-
+The average rating a movie recieves is indicative of several importat factors to take into consideration, e.g.: Movie quality, audience tastes, specific audience, the era of release and actor popularity. The overarching issue is that when actors recieve oscar nominations, it can have an effect on all the afformentioned factors contributiong to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that movies with nominated actors recieve significantly better reviews than movies with not nominated actors. This is also verified throught the Kolmogorov-Smirnov test, which reciews a p-value that is infitesimally small.  
 
 
 
