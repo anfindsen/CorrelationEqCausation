@@ -251,6 +251,9 @@ From looking at the lineplots depicting movie average rating and number of votes
 
 Logistic regression was not very performant on this. The best f1-score was reached was with 0.14, with recall 1.0 and accuracy 0.1, meaning the model generally only predicted that movies will be nominated, which is not a good model.
 
+<iframe src="{{ 'images/review_dist.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
+
+
 The average rating a movie recieves is indicative of several importat factors to take into consideration, e.g.: Movie quality, audience tastes, specific audience, the era of release and actor popularity. The overarching issue is that when actors recieve oscar nominations, it can have an effect on all the afformentioned factors contributiong to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that movies with nominated actors recieve significantly better reviews than movies with not nominated actors. This is also verified throught the Kolmogorov-Smirnov test, which reciews a p-value that is infitesimally small.  
 
 
