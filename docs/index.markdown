@@ -68,26 +68,6 @@ We also use PCA in a similar fashion. PCA attempts to summarize the information 
 (_I am adding my general analysis here coz no designated place as of now, can tie into other parts as needed_)
 Lets analyze all the data we have to get a feel for how it varies and also understand these methods and how they are used a bit better. 
 
-We only use these methods on numeric data.
-
-
-In the following plot, we see the results of applying T-SNE to generate 2-dimensional embeddings of all the cleaned data of numeric type.
-![image](images/T_SNE_all_numerical_features.png)
-
-
-The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees near by). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an oscar. We find that the results of PCA also support this conclusion.
-![image](images/PCA_scatter_all_features.png)
-
-The elbow plot below shows us how much of the total variance in the data is explained by each PC (called explained variance ratio - EVR). This allows us to gauge how 'important' each PC is (if a PC does not explain much about the data, it is not important).
-![image](images/PCA_elbow_all.png)
-This heatmap shows how individual features affect principal components. 
-![image](images/PCA_heatmap_all.png)
-
-This heatmap shows how individual features affect principal components, _scaled by the explained variance ratio_. This allows for easier interpretation compared the previous heatmap as values in different columns can be compared directly to judge how much variance is explained by them.
-![image](images/PCA_heatmap_all_weighted.png)
-
-We will see more of these soon.
-
 
 ## Logistic regression - Rasmus
 
@@ -106,37 +86,77 @@ A useful side product of this method is finding what features have higher weight
 
 # Analysis - TODO come up with better headers
 
+## High level analysis - Clustering
+Before looking into the nitty gritty of actor and movie details, let's analyze all the data we have to get a feel for how it varies and how actor and movie features can correlate with Oscar nominations.
+
+We only use these methods on numeric data.
 
 
-## What kind of actor should you be?
+In the following plot, we see the results of applying T-SNE to generate 2-dimensional embeddings of all the cleaned data of numeric type.
+![image](images/T_SNE_all_numerical_features.png)
+
+
+The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees near by). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an oscar. We find that the results of PCA also support this conclusion.
+<div style="display: flex; gap: 1px; align-items: center;">
+  <img src="images/PCA_scatter_all_features.png" alt="pca" width="49%" />
+  <img src="images/PCA_elbow_all.png" alt="pca elbow" width="49%" />
+</div>
+
+The elbow plot below shows us how much of the total variance in the data is explained by each PC (called explained variance ratio - EVR). This allows us to gauge how 'important' each PC is (if a PC does not explain much about the data, it is not important).
+
+This heatmap shows how individual features affect principal components, _scaled by the explained variance ratio_. This allows for easier interpretation compared the previous heatmap as values in different columns can be compared directly to judge how much variance is explained by them.
+![image](images/PCA_heatmap_all_weighted.png)
+
+We will see more of these soon.
+
+## **What kind of actor should you be?**
 Can one optimize to increase their chances of winning an oscar?
 
-### Clustering - Tejas
+### **Clustering** - Tejas
 We start answering the question of whether it is possible to optimize the odds of winning an oscar by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid to ensure you actually stand a chance of winning.
 
-#### Clustering on all personal numeric features of actors
+**Clustering on all personal numeric features of actors**
+
 This is the result of T-SNE on _all_ features pertaining to the actors themselves - `age`, `gender`, (one hot encoded) `ethnicity`, `height` and also the augmented features capturing experience - `number_of_movies_starred_in`, `average_rating_previous_movies` and `average_box_office_revenue_previous_movies`.
 ![image](images/T_SNE_actor_personal_features.png)
 
-#### Effect of dropping ethnicities on clusters
-On removing ethnicities, we get the following plots from PCA and T-SNE respectively - 
-![image](images/PCA_actor_personal_wo_ethnicity.png)
-![image](T_SNE_actor_personal_wo_ethnicity.png)
+
+*T-sne normalized=True, perplexity=50*
+
+It can be seen that there are multiple clusters, with some having more nominated actors. We suspect this could have to do with clusters corresponding to ethnicities
+
+**Effect of dropping ethnicities on clusters**
+
+On removing ethnicities, we get the following plots from PCA and T-SNE respectively:
+
+<div style="display: flex; gap: 1px; align-items: center;">
+  <img src="images/T_SNE_actor_personal_wo_ethnicity.png" alt="pca personal" width="49%" />
+  <img src="images/PCA_actor_personal_wo_ethnicity.png" alt="pca persoal wo ethnicity" width="49%" />
+</div>
+
 Interestingly, T-SNE showed the oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features).
 PCA still clearly shows the nominees cluster to be a well defined subset of all actors and the oscar winners cluster to be a subset of the nominees cluster.
-
+Thus ethnicity could be an important feature to explain variance in the data.
 
 The heatmap below shows the contributions of different features to different Principal Components, weighted by the amount of variance that each PC explains in the data - called explained variance ratio (EVR) (so for example, all values for PC1 are weighted by the EVR for PC1, and all those for PC5 are weighted by the EVR for PC5, allowing for direct comparison of the overall importance of each feature).
-![image](images/PCA_heatmap_actor_no_eth_weighted.png)
+<p align="center">
+  <img src="images/PCA_heatmap_actor_no_eth_weighted.png" width="80%" />
+</p>
 We see large values (absolute) for all the features, indicating that they are quite independant. This is also confirmed by an elbow plot of the explained-variance-ratios, with the last PC explaining 10% of the variance in the data.
 (TODO set scale to show how flat it is better)
-![image](images/PCA_actor_personal_wo_eth_elbow.png)
 
+<p align="center">
+  <img src="images/PCA_actor_personal_wo_eth_elbow.png"  width="45%" style="margin: auto" />
+</p>
 
-####
+**Effect of dropping actor experience on clusters**
+
 To gauge the importance of the augmented features on experience, let's try clustering without them and compare the results. We drop the three augmented features and use the top 10 ethnicities by frequency, one-hot-encoded, along with age, gender and height.
-![image](images/PCA_scatter_personal_no_augmented.png)
-![image](images/T_SNE_personal_no_augmented.png)
+<div style="display: flex; gap: 1px; align-items: center;">
+  <img src="images/PCA_scatter_personal_no_augmented.png"  width="49%" />
+  <img src="images/T_SNE_personal_no_augmented.png" width="49%" />
+</div>
+
 We still see regions to avoid being in if we want to win an oscar, but this is a bit harder now.
 
 
