@@ -220,13 +220,13 @@ In summary, there are genres to avoid, there has been significant historic oppur
 
 Let's look at if it is possible to predict if a movie will be nominated for an Oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
 
-From looking at the lineplots depicting movie average rating and number of votes relation to being nominated, a general trend upwards can be seen. However, even at the level of the highest ratings, so few movies get nominated, and we can't say with high confidence, that a well- or often-reviewed movie will get nominated
+From looking at the line plots depicting movie average rating and number of votes relation to being nominated, a general trend upwards can be seen. However, even at the level of the highest ratings, so few movies get nominated, and we can't say with high confidence, that a well- or often-reviewed movie will get nominated
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/avg_rating_nominated.png" alt="Average Rating" width="49%" />
   <img src="images/nr_votes_nominated.png" alt="Number of Votes" width="49%" />
 </div>
 
-Logistic regression was not very performant on this. The best f1-score was reached was with 0.14, with recall 1.0 and accuracy 0.1, meaning the model generally only predicted that movies will be nominated, which is not a good model.
+Logistic regression is not very performant on this. The best f1-score we reach is 0.14, with recall 1.0 and accuracy 0.1, meaning the model generally only predicts that movies will be nominated, which is not a good model.
 
 <iframe src="{{ 'images/review_dist.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
