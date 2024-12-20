@@ -25,7 +25,12 @@ Blabalbla
 # **Data**
 
 ## **Data merging** - Erik
-a
+For the following analysis we used the CMU dataset containing tables of movies and of characters. The movies and characters have a one-to-many 
+relationship allowing us to connect them. Furthermore, the character table contains a column specifying the actor playing the character. This dataset is supplemented with IMDb dataset to find the ratings for the movies and an dataset containing Oscar nomination.
+
+Further we introduce three augmented features: Number of movies starred in, average rating of previous movies, average box office revenue of previous movies.   
+
+The Oscars are comprised of many different cateogries. However, in the coming analysis we are interested in the following three categories for both men and women: actor/actress, actor/actress in a leading role, actor/actress in a supporting role. 
 
 ## **Data cleaning** - Rasmus
 
@@ -147,6 +152,40 @@ Although the nationalities are quite balanced in our cleaned dataset, it is also
 TL;DR: In general, actors in American movies have a higher chance of winning an Oscar, but in our cleaned dataset this skew is gone.
 
 ### **Career analysis** - Erik
+In this section we are intersted in finding out more about what characterizes the career of Oscar nominated actors. Furthermore, we explore how an actor's career is impacted after being nominated for their first Oscar. 
+
+For this analysis we split the career of an Actor into three parts: Before being nominated for their first Oscar, at the moment they were nominated for their first Oscar and the career after their first nomination. For actors who have never received or have yet to receive an Oscar nomination we observe their career as one phase. Moreover, for the first part we are only concerned about actors who have been active in the 21st centuary. The reason for this is that our dataset starts at 1928 and for the analysis to make sense we need to observe the actors from the start of their career. 
+
+For our first analysis let's find out how many movies actors star in before being nominated for an Oscar and compare this to the number of movies starred in for actors who have never or yet to receive a nomination. 
+
+![image](images/movies_starred_in.png)
+
+Observing the plots it appears that when actors receive their first Oscar nomination when they have starred in more movies than what most actors have starred in over their career. The average number of movies starred in before receiving an Oscar nomination is 15.13 while in our dataset non-nominated actors have starred in an average of 7.67 movies over their entire career.
+
+However, this analysis is a slightly flawed as the non-nominated sample could contain young actors who are just starting out and are thus weighing down the average. Let's furher analyse this potential flaw by plotting the age distribution in both samples.
+
+![image](images/age.png)
+
+The average age of the nominated group is 41.26 and 40.17 for the non-nominated group. However, observing the distribution we observe that the youngest nominated actor is 19 years old while the youngest actor in the non-nominated group is 4 years old. This could explain why the average number of movies starred is lower in the non-nominated group. Therefore, to improve our analysis we filter the non-nominated group to only contain actors who are 19 years old or older. This will give each actor in the sample the same oppurtunity to star in the same number of movies.
+
+![image](images/movies_starred_in_2.png)
+
+In the new sample the average number of movies starred in is 7.92. Let's further investigate if the difference in averages is significant. To do this we utilise and T-test and calculate a P-value of 1.27e-27. This P-value falls below the threshold and we thus reject the null hypothesis being that the averages between the samples would be the same and accept the alternative hypothesis that they are different.  
+
+From this we make the conclusion that actors need to star in around 15 movies on average before being nominated for their first Oscar. In addition, we conclude that one of the reasons why some actors may not have been nominated for an Oscar is due to not having starred in enough movies yet or throught out their career.
+
+With the conclusion that actors need to star in more movies in order to receive Oscar nominations we continue our analysis by analysing if the "success" of the movies you starred in prior to being nominated matters. For the analysis we assume that the success of a movie is determined by the box office revenue and the IMDb rating. 
+
+![image](images/revenue_rating_pre_non.png)
+
+Observing the plot above our initial conclusion is that actors going on to be nominated for an Oscar seem to generally star in higher rated movies prior to their first nomination, but not more comercially sucessful ones. We will further investigate this hypothesis by conducting T-tests with respect to the revenue and rating seperately.
+
+| Metric                                  | Non-Nominated       | Pre-Nominated      | P-Value            |
+|-----------------------------------------|---------------------|--------------------|--------------------|
+| Average box office revenue              | 86,090,801.55       | 84,983,818.47      | 0.8203             |
+| Average rating                          | 5.58                | 6.52               | 1.79e-37           |
+
+From the table above we conclude that actors who go on to be Oscar nominated star in more crically acclaimed movies than actors who do not end up being nominated. However, the comercial success of movies starred in seem to not matter for receiving Oscar nomination as the P-value is 0.82 and thus we accept the null hypothesis of the samples means being equal. A reason for this may be that some genres of movies appeal to the critics but not to the masses.
 
 
 #### **Actor Network** - Melker

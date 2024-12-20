@@ -21,7 +21,15 @@ Source for this section: <a href="https://sites.utexas.edu/sos/guided/inferentia
 
 ## T-test - Erik
 
+A T-test is a statistical test used to determine if there is a significant difference between the means of two independent distribution. 
+Firstly, the null hypothesis is stated which in the following section is that the means of the two samples and are identical and thus the alternative
+hypothesis becomes that they are different. The T-statistic is calculated as a function of the two samples (INSERT EQUATION) and using a table it is possible
+to find the probability of the samples having identical means, thus the null hypothesis being correct. The probability of the null hypothesis being true is known as
+the P-value for the test. In this article we use a threshold of 5% for the P-value, meaning if the P-value is below 5% we reject the null hypothesis with 95% confidence
+and accept the alternative hypothesis. 
+
 ## Clustering - Tejas
+
 We use T-SNE to visually inspect the data for natural clusters that might also be informative about the chances of being nominated for oscars. T-SNE measures the closeness of pairs of points in higher dimensional spaces and then transforms the points to a lower dimension while trying to preserve this notion of closeness and distance  (i.e. points that were close in higher dimensions should stay close in the lower dimension and vice versa). This allows for easier visualization and handling of high dimensional data, but comes at the cost of interpretability, as we cannot exactly say how the original features contribute individually to the new features in the reduced space.
 
 We also use PCA in a similar fashion. PCA attempts to summarize the information in high dimensional data using a smaller set of uncorrelated variables called Principal Components (PCs) that capture most of the variance in the data. PCs are linear combinations of the original features. This makes PCA better than T-SNE for explainability as we can see how much each feature contributes to each principal component.
