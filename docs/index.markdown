@@ -231,7 +231,7 @@ This indicates that there is no one feature widely used to make this prediction.
 
 <iframe src="{{ 'images/most_popular_genres.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-<iframe src="{{ 'images/genres_by_share.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
+<iframe src="{{ 'images/genres_by_share2.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 ### **Prediction on movie features** - Melker (plots)/ Rasmus
 
 Let's look at if it is possible to predict if a movie will be nominated for an oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
