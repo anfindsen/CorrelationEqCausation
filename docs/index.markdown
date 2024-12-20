@@ -108,18 +108,18 @@ To our surprise, there does not seem to be a clear skew in favor of American act
 
 This needs to be analyzed more rigorously, and that is where our <a href="methods#binomial-test">binomial test</a> enters the picture. We analyze the distribution of American vs. non-American movies in our dataset, with the first category containing all actors in movies where the US is one of the nationalities, or the only one (many movies have multiple nationalities). First off, we find the ratio of American movies in our dataset being nominated. Then we perform the binomial test to see if the ratio of non-American movies being nominated is significantly different from the American ratio. We choose alpha=0.05 as the threshold to discard the null hypothesis for this test.
 
-Again, to our surprise, we find that while the ratio is slightly higher for American movies, they do not have a significantly higher ratio of Oscar nominations that non-American movies, with a p-value of 0.56 (far higher than 0.05). This is likely very affected by our data cleaning process, where we as previously mentioned (TODO: Add reference) remove a lot of data from countries like India (removing much of Bollywood from the equation). However, with this result in mind we decide to keep non-American data in our dataset for all the following analysis, as the data cleaning has removed the expected multicolinearity between country and Oscar nomination.
+Again, to our surprise, we find that while the ratio is slightly higher for American movies, they do not have a significantly higher ratio of Oscar nominations than non-American movies, with a p-value of 0.56 (far higher than 0.05). This is likely very affected by our data cleaning process, where we for example, as mentioned in <a href="data">our data section</a>, remove a lot of Indian actors (removing much of Bollywood from the equation).
 
 Although the nationalities are quite balanced in our cleaned dataset, it is also interesting to examine what the distribution looks like for the data before cleaning. In the full dataset 0.55% of American movies are nominated, as opposed to 0.064% of non-American movies. We perform the same binomial test for this data, and find that the probability of these two numbers being from the same distribution (the p-value) is a whopping 2.6*10^(-307). Thus we conclude that in general (assuming our full dataset is somewhat representative), actors in American movies have a significantly higher chance of being nominated for an Oscar than non-American movies.
 
-TL;DR: In general, actors in American movies have a higher chance of winning an Oscar, but in our cleaned dataset this skew is gone.
+**TL;DR:** In general, actors in American movies have a higher chance of winning an Oscar, but in our cleaned dataset this skew is gone.
 
 ### **Career analysis**
-In this section we are intersted in finding out more about what characterizes the career of Oscar nominated actors. Furthermore, we explore how an actor's career is impacted after being nominated for their first Oscar. 
+Moving on from nationality, we want to find out more about what characterizes the career of Oscar nominated actors.
 
-For this analysis we split the career of an Actor into three parts: Before being nominated for their first Oscar, at the moment they were nominated for their first Oscar and the career after their first nomination. For actors who have never received or have yet to receive an Oscar nomination we observe their career as one phase. Moreover, for the first part we are only concerned about actors who have been active in the 21st centuary. The reason for this is that our dataset starts at 1928 and for the analysis to make sense we need to observe the actors from the start of their career. 
+For this analysis we split the career of an Actor into three parts: Before being nominated for their first Oscar, at the moment they were nominated for their first Oscar and their career after their first nomination. For actors who have never received or have yet to receive an Oscar nomination we observe their career as one phase. Moreover, for the first part we are only concerned about actors who have been active in the 21st century. The reason for this is that our dataset starts at 1928 and for the analysis to make sense we need to observe the actors from the start of their career. 
 
-For our first analysis let's find out how many movies actors star in before being nominated for an Oscar and compare this to the number of movies starred in for actors who have never or yet to receive a nomination. 
+For our first analysis let's find out how many movies actors star in before being nominated for an Oscar, and compare this to the number of movies starred in for actors who have never or not yet received a nomination. 
 
 ![image](images/movies_starred_in.png)
 
@@ -129,44 +129,44 @@ However, this analysis is a slightly flawed as the non-nominated sample could co
 
 ![image](images/age.png)
 
-The average age of the nominated group is 41.26 and 40.17 for the non-nominated group. However, observing the distribution we observe that the youngest nominated actor is 19 years old while the youngest actor in the non-nominated group is 4 years old. This could explain why the average number of movies starred is lower in the non-nominated group. Therefore, to improve our analysis we filter the non-nominated group to only contain actors who are 19 years old or older. This will give each actor in the sample the same oppurtunity to star in the same number of movies.
+The average age of the nominated group is 41.26, and 40.17 for the non-nominated group. However, observing the distribution we observe that the youngest nominated actor is 19 years old while the youngest actor in the non-nominated group is 4 years old. This could explain why the average number of movies starred is lower in the non-nominated group. Therefore, to improve our analysis we filter the non-nominated group to only contain actors who are 19 years old or older. This will give each actor in the sample the same oppurtunity to star in the same number of movies.
 
 ![image](images/movies_starred_in_2.png)
 
-In the new sample the average number of movies starred in is 7.92. Let's further investigate if the difference in averages is significant. To do this we utilise and T-test and calculate a P-value of 1.27e-27. This P-value falls below the threshold and we thus reject the null hypothesis being that the averages between the samples would be the same and accept the alternative hypothesis that they are different.  
+In the new sample the average number of movies starred in is 7.92. Let's further investigate if the difference in averages is significant. To do this we utilise the <a href="methods#t-test">T-test</a> and calculate a P-value of 1.27e-27. This P-value falls below the threshold and we thus reject the null hypothesis that the averages between the samples would be the same and accept the alternative hypothesis that they are different.  
 
-From this we make the conclusion that actors need to star in around 15 movies on average before being nominated for their first Oscar. In addition, we conclude that one of the reasons why some actors may not have been nominated for an Oscar is due to not having starred in enough movies yet or throught out their career.
+From this we make the conclusion that actors in our dataset star in around 15 movies on average before being nominated for their first Oscar. In addition, we conclude that one of the reasons why some actors may not have been nominated for an Oscar is due to not having starred in enough movies.
 
 With the conclusion that actors need to star in more movies in order to receive Oscar nominations we continue our analysis by analysing if the "success" of the movies you starred in prior to being nominated matters. For the analysis we assume that the success of a movie is determined by the box office revenue and the IMDb rating. 
 
 ![image](images/revenue_rating_pre_non.png)
 
-Observing the plot above our initial conclusion is that actors going on to be nominated for an Oscar seem to generally star in higher rated movies prior to their first nomination, but not more comercially sucessful ones. We will further investigate this hypothesis by conducting T-tests with respect to the revenue and rating seperately.
+Observing the plot above our initial conclusion is that actors going on to be nominated for an Oscar seem to generally star in higher rated movies prior to their first nomination, but not more commercially successful ones. We will further investigate this hypothesis by conducting T-tests with respect to the revenue and rating seperately.
 
 | Metric                                  | Non-Nominated       | Pre-Nominated      | P-Value            |
 |-----------------------------------------|---------------------|--------------------|--------------------|
 | Average box office revenue              | 86,090,801.55       | 84,983,818.47      | 0.8203             |
 | Average rating                          | 5.58                | 6.52               | 1.79e-37           |
 
-From the table above we conclude that actors who go on to be Oscar nominated star in more crically acclaimed movies than actors who do not end up being nominated. However, the comercial success of movies starred in seem to not matter for receiving Oscar nomination as the P-value is 0.82 and thus we accept the null hypothesis of the samples means being equal. A reason for this may be that some genres of movies appeal to the critics but not to the masses.
+From the table above we conclude that actors who go on to be Oscar nominated star in more critically acclaimed movies than actors who do not end up being nominated. However, the commercial success of movies starred in seem to not matter for receiving Oscar nominations. The P-value for this is 0.82, and we accept the null hypothesis of the samples' means being equal. A reason for this may be that some genres of movies appeal to the critics but not to the masses.
 
 
 #### **Actor Network**
 <iframe src="{{ 'images/network_analysis.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-What makes a great movie is seldom a single performance, it is often an ensemble of great performances enhancing each other. Hence we take a deep dive into the actor's relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful for plotting the graph of all actors as it has over 23 000 edges. We instead count the number of relationships for nominated and not nominated actors which turn out to be 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having starred in 19 movies while not nominated actors have on average starred in just 6 movies. From this, we can conclude that nominated actors before or after their nominations star in more movies with more actors. 
+What makes a great movie is seldom a single performance, it is often an ensemble of great performances enhancing each other. Hence we take a deep dive into the actor's relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is, however, not useful to plot the graph of all actors, as it has over 23 000 edges. We instead calculate the average number of relationships for nominated and non-nominated actors. These turn out to be 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having starred in 19 movies, while non-nominated actors have on average starred in just 6 movies (This number is different from the previous career analysis, as we are now considering the full dataset without the limitations we used previously). From this, we can conclude that nominated actors before or after their nominations star in more movies with more actors. 
 <iframe src="{{ 'images/new_network_graph2.html' | relative_url }}" width="100%" height="480px" frameborder="0"></iframe>
 
 
-Additionally, it appears that all nominated actors have a relationship to atleast one other Oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
+Additionally, it appears that all nominated actors have a relationship with at least one other Oscar nominated actor. This validates the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
 
 ### **Modelling on actor features**
-We explore the possibility to predict whether a person is nominated for an Oscar for a movie. We try using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we apply both over- and undersampling techniques.
+All of this will lead a data scientist to ask themselves the question: "Can you predict whether an actor will be nominated for an Oscar for a movie?". We try using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we apply both over- and undersampling techniques.
 
 #### **Modelling on personal features**
-Firstly, we try, if possible, to predict being nomintated purely from personal features such as gender, height, ethnicity and age. If that were possible it would indicate that there is a possibility for a bias for or against certain people, not connected to their skill in acting, which would be bad.
+Firstly, we try, if possible, to predict being nominated purely from based on features such as gender, height, ethnicity and age. If that were possible it would indicate that there is a possibility for a bias for or against certain people, not connected to their skill in acting, which would be bad.
 
-However, both the logistic regression and decision tree proves incapable of doing so, even with rebalancing the data the models achieved a maximum F1 score of 0.05. This indicates that we cannot simply tell who will get nominated by what they look like.
+However, both the logistic regression and decision tree proves incapable of doing so. Even with rebalancing the data the models achieved a maximum F1 score of 0.05. This indicates that we cannot simply tell who will get nominated by what they look like.
 
 
 #### **Modelling using all features**
