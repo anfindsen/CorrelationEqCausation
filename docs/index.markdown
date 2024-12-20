@@ -149,7 +149,7 @@ From the table above we conclude that actors who go on to be Oscar nominated sta
 <iframe src="{{ 'images/network_analysis.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 What makes a great movie is seldom a single performance, it is often an ensemble of great performances enhancing each other. Hence we take a deep dive into the actor's relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful for plotting the graph of all actors as it has over 23 000 nodes. We instead count the number of relationships for nominated and not nominated actors which turn out to be 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having starred in 19 movies while not nominated actors have on average starred in just 6 movies. From this, we can conclude that nominated actors before or after their nominations star in more movies with more actors. 
-<iframe src="{{ 'images/new_network_graph.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
+<iframe src="{{ 'images/new_network_graph.html' | relative_url }}" width="100%" height="480px" frameborder="0"></iframe>
 
 Additionally, it appears that all nominated actors have a relationship to atleast one other Oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
 
@@ -185,17 +185,17 @@ This indicates that there is no one feature widely used to make this prediction.
 ### **Genre analysis**
 <iframe src="{{ 'images/genres_wo_nominations.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-There are clearly genres worth avoiding for oscar aspiring actors. For instance Animation, Absurdims, Dystopia and Alien film to name a few. 
+There are clearly genres worth avoiding for Oscar aspiring actors. For instance Animation, Absurdims, Dystopia and Alien film to name a few. 
 On the otherhand, there are also genres that have many actor nominations, e.g. Drama, Period, Romantic drama and Biography. However, they have many nominations partly because they have many movies. Hence, we can look at the genres with the highest share of Oscar winners. 
 
 
 <iframe src="{{ 'images/genres_by_share2.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
-The genre with the highest share of Oscar nominated performances is New Hollywood with 27% of performances being nominated. Coming second is Biographical film with only 8% of performances being nominated. With a time machine, travelling back to the 1960s-1980s would be the most optimal for an actor winning an Oscar. Hence we will need to look at more recent successful genres. 
+The genre with the highest share of Oscar nominated performances is New Hollywood with 27% of performances being nominated. Coming second is Biographical film with only 8% of performances being nominated. The issue is that New Hollywood was a genre active between 1960 and 1980. So, with a time machine, travelling back to the 1960s-1980s would be the most optimal for an actor winning an Oscar. Hence we will need to look at more recent successful genres. 
 <iframe src="{{ 'images/genres_by_share_new.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 In recent years, the most popular genres at the Oscars has not had as high success rate as the most popular genres in earlier years. Up top is Period piece, Romantic drama and Crime Thriller. 
 
-In summary, there are genres to avoid, there has been significant historic oppurtunity in choosing genere, 
+In summary, there are genres to avoid, there has been significant historic oppurtunity in choosing genre.
 
 
 ### **Modelling on movie features**
@@ -213,7 +213,7 @@ Logistic regression is not very performant on this. The best f1-score we reach i
 <iframe src="{{ 'images/review_dist_new_title.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 
-The average rating a movie receives is indicative of several important factors to take into consideration, e.g.: movie quality, audience tastes, specific audience, the era of release, and actor popularity. The overarching issue is that when actors receive oscar nominations, it can affect all the factors contributing to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that films with nominated actors receive significantly better reviews than movies with not nominated actors. This is also verified through the <a href="methods#kolmogorov-smirnov">Kolmogorov-Smirnov</a> test, which gets an infinitesimally small p-value.  
+The average rating a movie receives is indicative of several important factors to take into consideration, e.g.: movie quality, audience tastes, specific audience, the era of release, and actor popularity. The overarching issue is that when actors receive Oscar nominations, it can affect all the factors contributing to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that films with nominated actors receive significantly better reviews than movies with not nominated actors. This is also verified through the <a href="methods#kolmogorov-smirnov">Kolmogorov-Smirnov</a> test, which gets an infinitesimally small p-value.  
 
 
 
