@@ -37,13 +37,13 @@ We only use these methods on numeric data.
 
 
 In the following plot, we see the results of applying <a href="methods#clustering">T-SNE</a> to generate 2-dimensional embeddings of all the cleaned data of numeric type.
-![image](images/T_SNE_all_numerical_features.png)
+![image](images/clustering/tejas1.png)
 
 
 The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees nearby). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an Oscar. We find that the results of <a href="methods#clustering">PCA</a> also support this conclusion.
 <div style="display: flex; gap: 1px; align-items: center;">
-  <img src="images/PCA_scatter_all_features.png" alt="pca" width="49%" />
-  <img src="images/PCA_elbow_all.png" alt="pca elbow" width="49%" />
+  <img src="images/clustering/tejas4.png" alt="pca" width="49%" />
+  <img src="images/clustering/tejas2.png" alt="pca elbow" width="49%" />
 </div>
 
 The elbow plot above shows us how much of the total variance in the data is explained by each principal component (called explained variance ratio - EVR). This allows us to gauge how 'important' each PC is. In other words, we can see that the scatter plot explains about 40% of the variance in our data (PC1 + PC2).
@@ -58,7 +58,7 @@ We start answering these questions by looking at the data. Different clustering 
 **Clustering on all personal numeric features of actors**
 
 This is the result of T-SNE on _all_ features pertaining to the actors themselves - `age`, `gender`, `ethnicity` (one hot encoded), `height` and also the augmented features capturing experience - `number of movies starred in`, `average rating previous movies` and `average box office revenue previous movies`.
-![image](images/T_SNE_actor_personal_features.png)
+![image](images/clustering/tejas10.png)
 
 
 *T-sne normalized=True, perplexity=50*
@@ -70,8 +70,8 @@ It can be seen that there are multiple clusters, with some having more nominated
 On removing ethnicities, we get the following plots from T-SNE and PCA respectively:
 
 <div style="display: flex; gap: 1px; align-items: center;">
-  <img src="images/T_SNE_actor_personal_wo_ethnicity.png" alt="pca personal" width="49%" />
-  <img src="images/PCA_actor_personal_wo_ethnicity.png" alt="pca persoal wo ethnicity" width="49%" />
+  <img src="images/clustering/tejas11.png" alt="pca personal" width="49%" />
+  <img src="images/clustering/tejas12.png" alt="pca persoal wo ethnicity" width="49%" />
 </div>
 
 Interestingly, T-SNE showed the Oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features). This means that ethnicity could be a factor in whether you are nominated or not.
@@ -82,8 +82,8 @@ PCA still clearly shows the nominees cluster to be a well defined subset of all 
 
 To gauge the importance of the augmented features we created (nr. of movies previously acted in, avg. rating of previous movies, avg. box office revenue of previous movies), let's try clustering without them and compare the results. We drop the three augmented features and use the top 10 ethnicities by frequency, one-hot-encoded, along with age, gender and height.
 <div style="display: flex; gap: 1px; align-items: center;">
-  <img src="images/PCA_scatter_personal_no_augmented.png"  width="49%" />
-  <img src="images/T_SNE_personal_no_augmented.png" width="49%" />
+  <img src="images/clustering/tejas13.png"  width="49%" />
+  <img src="images/clustering/tejas14.png" width="49%" />
 </div>
 
 We still see regions to avoid being in if we want to win an Oscar, but this is a bit harder now.
