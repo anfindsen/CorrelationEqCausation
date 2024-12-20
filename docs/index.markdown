@@ -170,46 +170,52 @@ However, both the logistic regression and decision tree proves incapable of doin
 
 
 #### **Modelling using all features**
-Predicting with all of the features we have leads to more promising results. While logistic regression still does not perform, using a decision tree with undersampling leads to our best-performing model (in terms of F1-score) with:
-* Accuracy 0.953
-* Precision 0.196
-* Recall 0.4375
-* F1-score 0.271
+Predicting with all of the features we have leads to more promising results. Using a decision tree with undersampling leads to our best-performing model (in terms of F1-score) with:
+* Accuracy 0.964
+* Precision 0.215
+* Recall 0.292
+* F1-score 0.248
 
-This result, while better, is not sufficient for reliably predicting Oscar nominations. It gets really high accuracy, but that is only because most actors are not nominated, and the model generally correctly predicts this. The model would correctly classify 43.75% of Oscar nominations, but only 19.6% of predicted nominations would be correct. While this is an interesting number (Considering the large amount of actors who are not nominated, definitely better than random!) it is not a great prediction.
+This result, while better, is not sufficient for reliably predicting Oscar nominations. It gets really high accuracy, but that is only because most actors are not nominated, and the model generally correctly predicts this. The model would correctly classify 29.2% of Oscar nominations, and 21.5% of predicted nominations would be correct. While this is an interesting number (Considering the large amount of actors who are not nominated, definitely better than random!) it is not a great prediction.
 
 Extracting the highest feature importance gives us the table:
 
 | Feature | Importance |
 |---|---|
-| average_rating	 | 0.106306 |
-| year | 0.095321 |
-| actor_age | 0.081904 |
+| year | 0.093 |
+| actor_height	 | 0.084 |
+| number_of_movies_starred_in | 0.084 |
+
 This indicates that there is no one feature widely used to make this prediction.
 
 ## **What kind of films should you star in?**
 
+Moving on from personal features, we also want to examine what kind of films you should choose to work with if you want to maximize your chances of being nominated. Let's start off with looking at genres.
+
 ### **Genre analysis**
+
+First off, here are the biggest genres that did not have a single Oscar nomination in our dataset:
+
 <iframe src="{{ 'images/genres_wo_nominations.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-There are clearly genres worth avoiding for Oscar aspiring actors. For instance Animation, Absurdims, Dystopia and Alien film to name a few. 
-On the otherhand, there are also genres that have many actor nominations, e.g. Drama, Period, Romantic drama and Biography. However, they have many nominations partly because they have many movies. Hence, we can look at the genres with the highest share of Oscar winners. 
+There are genres that are possibly worth avoiding for Oscar aspiring actors. For instance Animation, Absurdism, Dystopia and Alien film to name a few. 
+On the other hand, there are also genres that have many actor nominations, e.g. Drama, Period, Romantic drama and Biography. However, they have many nominations partly because they have many movies. Hence, we can look at the genres with the highest share of Oscar winners. 
 
 
 <iframe src="{{ 'images/genres_by_share2.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
-The genre with the highest share of Oscar nominated performances is New Hollywood with 27% of performances being nominated. Coming second is Biographical film with only 8% of performances being nominated. The issue is that New Hollywood was a genre active between 1960 and 1980. So, with a time machine, travelling back to the 1960s-1980s would be the most optimal for an actor winning an Oscar. Hence we will need to look at more recent successful genres. 
+The genre with the highest share of Oscar nominated performances is New Hollywood with 27% of performances being nominated. Coming second is Biographical film with 8% of performances being nominated. The issue is that New Hollywood was a genre active between 1960 and 1980. So, with a time machine, travelling back to the 1960s-1980s would be the most optimal for an actor winning an Oscar. Unfortunately, you likely do not have a time machine. We will need to look at more recent successful genres. 
 <iframe src="{{ 'images/genres_by_share_new.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-In recent years, the most popular genres at the Oscars has not had as high success rate as the most popular genres in earlier years. Up top is Period piece, Romantic drama and Crime Thriller. 
+In recent years, the most popular genres at the Oscars have not had as high success rate as the most popular genres in earlier years. Up top is Period piece, Romantic drama and Crime Thriller. 
 
-In summary, there are genres to avoid, there has been significant historic oppurtunity in choosing genre.
+In summary, there are genres to avoid, and there has been significant historic oppurtunity in choosing genre.
 
 
 ### **Modelling on movie features**
 
-Let's look at if it is possible to predict if a movie will be nominated for an Oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
+Lastly, let's look at if it is possible to predict if a movie will be nominated for an Oscar from popular opinion. To do this we split the movies into two: movies where at least one actor/actress was nominated, and movies where there weren't any.
 
-From looking at the line plots depicting movie average rating and number of votes relation to being nominated, a general trend upwards can be seen. However, even at the level of the highest ratings, so few movies get nominated, and we can't say with high confidence, that a well- or often-reviewed movie will get nominated
+From looking at the line plots depicting movie average rating and number of votes in relation to being nominated, a general trend upwards can be seen. However, even at the level of the highest ratings, so few movies get nominated, and we can't say with high confidence, that a well- or often-reviewed movie will get nominated
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/avg_rating_nominated.png" alt="Average Rating" width="49%" />
   <img src="images/nr_votes_nominated.png" alt="Number of Votes" width="49%" />
@@ -220,7 +226,7 @@ Logistic regression is not very performant on this. The best f1-score we reach i
 <iframe src="{{ 'images/review_dist_new_title.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 
-The average rating a movie receives is indicative of several important factors to take into consideration, e.g.: movie quality, audience tastes, specific audience, the era of release, and actor popularity. The overarching issue is that when actors receive Oscar nominations, it can affect all the factors contributing to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that films with nominated actors receive significantly better reviews than movies with not nominated actors. This is also verified through the <a href="methods#kolmogorov-smirnov">Kolmogorov-Smirnov</a> test, which gets an infinitesimally small p-value.  
+The average rating a movie receives is indicative of several important factors to take into consideration, e.g.: movie quality, audience tastes, specific audience, the era of release, and actor popularity. The overarching issue is that when actors receive Oscar nominations, it can affect all the factors contributing to different review scores. Looking at the review distributions for movies with nominated and non-nominated actors we can only draw one conclusion with certainty, that films with nominated actors receive significantly better reviews than movies with non-nominated actors. This is also verified through the <a href="methods#kolmogorov-smirnov">Kolmogorov-Smirnov</a> test, which gets an infinitesimally small p-value.  
 
 
 
