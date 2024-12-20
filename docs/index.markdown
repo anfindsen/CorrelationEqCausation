@@ -149,7 +149,7 @@ From the table above we conclude that actors who go on to be Oscar nominated sta
 <iframe src="{{ 'images/network_analysis.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 What makes a great movie is seldom a single performance, it is often an ensemble of great performances enhancing each other. Hence we take a deep dive into the actor's relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful for plotting the graph of all actors as it has over 23 000 edges. We instead count the number of relationships for nominated and not nominated actors which turn out to be 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having starred in 19 movies while not nominated actors have on average starred in just 6 movies. From this, we can conclude that nominated actors before or after their nominations star in more movies with more actors. 
-<iframe src="{{ 'images/new_network_graph.html' | relative_url }}" width="100%" height="1200px" frameborder="0"></iframe>
+<iframe src="{{ 'images/new_network_graph2.html' | relative_url }}" width="100%" height="1200px" frameborder="0"></iframe>
 
 
 Additionally, it appears that all nominated actors have a relationship to atleast one other Oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
