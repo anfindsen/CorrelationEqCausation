@@ -203,7 +203,8 @@ This indicates that there is no one feature widely used to make this prediction.
 ### **Genre analysis**
 <iframe src="{{ 'images/genres_wo_nominations.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-There are clearly genres worth avoiding for oscar aspiring actors. For instance Absurdims, doomsday film, dystopia and holiday film to name a few. On the otherhand, there are also genres that have many actor nominations, e.g. Drama, Period, Romantic drama and Biography. However, they have many nominations partly because they have many movies. Hence, we can look at the genres with the highest share of oscar winners. 
+There are clearly genres worth avoiding for oscar aspiring actors. For instance Animation, Absurdims, Dystopia and Alien film to name a few. 
+On the otherhand, there are also genres that have many actor nominations, e.g. Drama, Period, Romantic drama and Biography. However, they have many nominations partly because they have many movies. Hence, we can look at the genres with the highest share of Oscar winners. 
 
 
 <iframe src="{{ 'images/genres_by_share2.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
@@ -230,7 +231,7 @@ Logistic regression was not very performant on this. The best f1-score was reach
 <iframe src="{{ 'images/review_dist.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 
-The average rating a movie recieves is indicative of several importat factors to take into consideration, e.g.: Movie quality, audience tastes, specific audience, the era of release and actor popularity. The overarching issue is that when actors recieve oscar nominations, it can have an effect on all the afformentioned factors contributiong to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that movies with nominated actors recieve significantly better reviews than movies with not nominated actors. This is also verified throught the Kolmogorov-Smirnov test, which reciews a p-value that is infitesimally small.  
+The average rating a movie recieves is indicative of several importat factors to take into consideration, e.g.: Movie quality, audience tastes, specific audience, the era of release and actor popularity. The overarching issue is that when actors recieve oscar nominations, it can have an effect on all the afformentioned factors contributiong to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that movies with nominated actors recieve significantly better reviews than movies with not nominated actors. This is also verified throught the Kolmogorov-Smirnov test, which recievs a p-value that is infitesimally small.  
 
 
 
