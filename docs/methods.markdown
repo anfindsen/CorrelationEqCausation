@@ -5,11 +5,10 @@ permalink: /methods/
 ---
 
 
-# Mathematical methods
 
-First off, we want to define some of the mathematical methods we use in this analysis.
+Here are some of the mathematical methods we use in this analysis:
 
-<h2 id="binomial-test">Binomial test</h2>
+<h3 id="binomial-test" style="font-weight:bold;">Binomial test</h3>
 
 The binomial test calculates the probability of getting a certain number of positives, given a binary probability. This can be used to estimate whether we have reason to believe that two distributions are in fact the same. This is the formula for calculating this probability (AKA the p-value):
 
@@ -23,7 +22,7 @@ Source for this section: <a href="https://sites.utexas.edu/sos/guided/inferentia
 
 
 
-<h2 id="t-test">T-test</h2>
+<h3 id="t-test" style="font-weight:bold;">T-test</h3>
 
 A T-test is a statistical test used to determine if there is a significant difference between the means of two independent distribution. 
 Firstly, the null hypothesis is stated which in the following section is that the means of the two samples and are identical and thus the alternative
@@ -34,7 +33,7 @@ and accept the alternative hypothesis.
 
 
 
-<h2 id="clustering">Clustering</h2>
+<h3 id="clustering" style="font-weight:bold;">Clustering</h3>
 
 We use T-SNE to visually inspect the data for natural clusters that might also be informative about the chances of being nominated for oscars. T-SNE measures the closeness of pairs of points in higher dimensional spaces and then transforms the points to a lower dimension while trying to preserve this notion of closeness and distance  (i.e. points that were close in higher dimensions should stay close in the lower dimension and vice versa). This allows for easier visualization and handling of high dimensional data, but comes at the cost of interpretability, as we cannot exactly say how the original features contribute individually to the new features in the reduced space.
 
@@ -44,7 +43,7 @@ Lets analyze all the data we have to get a feel for how it varies and also under
 
 
 
-<h2 id="logistic-regression">Logistic regression</h2>
+<h3 id="logistic-regression" style="font-weight:bold;">Logistic regression</h3>
 
 Logistic regression is a method for binary classification. It works by essentially mapping linear regression output into a value between 0 and 1 i.e. a probability to belong to either class. So computing linear regression takes 3 steps:
 1. Calculate linear regression
