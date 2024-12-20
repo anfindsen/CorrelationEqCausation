@@ -148,7 +148,7 @@ TL;DR: In general, actors in American movies have a higher chance of winning an 
 ### **Career analysis** - Erik
 
 ### **Prediction on actor features** - Rasmus
-We explored the possibility to predict whether a person is nominated for an oscar for a movie. We used tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
+We explored the possibility to predict whether a person is nominated for an oscar for a movie. We tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
 
 #### **Predicting from personal features**
 Firstly, we tried if it is possible to predict being nomintated purely from personal features such as gender, height, ethnicity and age. If that were possible it would indicate that there is a possibility for a bias for or against certain people, not connected to their skill in acting, which would be bad.
