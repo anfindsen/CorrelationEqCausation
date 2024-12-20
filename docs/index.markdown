@@ -47,7 +47,7 @@ Distribution of features before and after data cleaning
 {% include carousel.html height="50" width="120" unit="%" duration="100" number="1" %}
 
 
-The distribution of the data changed more drastically for all data than for oscar-nominated data. For example, in the ethnicity feature, indian used to be the most common known ethnicity. However, after cleaning the data it was the second least common value. The number of oscar-nominated indian actors did not reduce however.
+The distribution of the data changed more drastically for all data than for Oscar-nominated data. For example, in the ethnicity feature, indian used to be the most common known ethnicity. However, after cleaning the data it was the second least common value. The number of Oscar-nominated indian actors did not reduce however.
 
 We also conducted the Kolmogorov-Smirnov test for all continuous features. With p-value 0.05 and using all data points, changes in distribution were significant for all continuous features (IMDb ratings, height, age, year). However, using nominated only the change in year distribution was significant. (Previous sentence not very clear imo)
 
@@ -65,7 +65,7 @@ In the following plot, we see the results of applying <a href="methods#clusterin
 ![image](images/T_SNE_all_numerical_features.png)
 
 
-The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees near by). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an oscar. We find that the results of <a href="methods#clustering">PCA</a> also support this conclusion.
+The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees near by). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an Oscar. We find that the results of <a href="methods#clustering">PCA</a> also support this conclusion.
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/PCA_scatter_all_features.png" alt="pca" width="49%" />
   <img src="images/PCA_elbow_all.png" alt="pca elbow" width="49%" />
@@ -79,10 +79,10 @@ This heatmap shows how individual features affect principal components, _scaled 
 We will see more of these soon.
 
 ## **What kind of actor should you be?**
-Can one optimize to increase their chances of winning an oscar?
+Can one optimize to increase their chances of winning an Oscar?
 
 ### **Clustering** - Tejas
-We start answering the question of whether it is possible to optimize the odds of winning an oscar by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid to ensure you actually stand a chance of winning.
+We start answering the question of whether it is possible to optimize the odds of winning an Oscar by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid to ensure you actually stand a chance of winning.
 
 **Clustering on all personal numeric features of actors**
 
@@ -103,8 +103,8 @@ On removing ethnicities, we get the following plots from <a href="methods#cluste
   <img src="images/PCA_actor_personal_wo_ethnicity.png" alt="pca persoal wo ethnicity" width="49%" />
 </div>
 
-Interestingly, <a href="methods#clustering">T-SNE</a> showed the oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features).
-<a href="methods#clustering">PCA</a> still clearly shows the nominees cluster to be a well defined subset of all actors and the oscar winners cluster to be a subset of the nominees cluster.
+Interestingly, <a href="methods#clustering">T-SNE</a> showed the Oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features).
+<a href="methods#clustering">PCA</a> still clearly shows the nominees cluster to be a well defined subset of all actors and the Oscar winners cluster to be a subset of the nominees cluster.
 Thus ethnicity could be an important feature to explain variance in the data.
 
 The heatmap below shows the contributions of different features to different Principal Components, weighted by the amount of variance that each PC explains in the data - called explained variance ratio (EVR) (so for example, all values for PC1 are weighted by the EVR for PC1, and all those for PC5 are weighted by the EVR for PC5, allowing for direct comparison of the overall importance of each feature).
@@ -126,7 +126,7 @@ To gauge the importance of the augmented features on experience, let's try clust
   <img src="images/T_SNE_personal_no_augmented.png" width="49%" />
 </div>
 
-We still see regions to avoid being in if we want to win an oscar, but this is a bit harder now.
+We still see regions to avoid being in if we want to win an Oscar, but this is a bit harder now.
 
 
 Now that we have a feel for how the features vary, lets dive in and rigorously evaluate the impact of every personal feature.
@@ -196,9 +196,9 @@ From the table above we conclude that actors who go on to be Oscar nominated sta
 What makes a great movie is seldom a single performance, it often an ensemble of great performances enhancing each other. Hence we make a deep dive into the actor relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful plotting the graph of all actors as it has over 23 000 nodes. We instead count the number of relationships for nominated and not nominated actors which turn out to 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having stared in 8.9 movies while not nominated actors have on average starred in 7.9 movies. From this we see two options: 1. Nominated actors perofmr in movies with more actors, creatingmore relationships per movie starred in. 2. Nominated actors are in more popular movies where more actors are registered and hence in the dataset.
 <iframe src="{{ 'images/network_graph.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-Additionally, it appears that all nominated actors have a relationship to atleast another oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
+Additionally, it appears that all nominated actors have a relationship to atleast another Oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
 ### **Prediction on actor features**
-We explored the possibility to predict whether a person is nominated for an oscar for a movie. We tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
+We explored the possibility to predict whether a person is nominated for an Oscar for a movie. We tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
 
 #### **Predicting from personal features**
 Firstly, we tried if it is possible to predict being nomintated purely from personal features such as gender, height, ethnicity and age. If that were possible it would indicate that there is a possibility for a bias for or against certain people, not connected to their skill in acting, which would be bad.
@@ -213,7 +213,7 @@ Predicting with all of the features we have led to more promising results. While
 * Recall 0.4375
 * F1-score 0.271
 
-While these numbers do not jump off the screen, this model could be used with relative accuracy to predict what actor or actress will next be nominated for an oscar. This specific model would catch 43.75% of the movies before they get nominated, but would only be right 20% of the time.
+While these numbers do not jump off the screen, this model could be used with relative accuracy to predict what actor or actress will next be nominated for an Oscar. This specific model would catch 43.75% of the movies before they get nominated, but would only be right 20% of the time.
 
 Extracting the highest feature importance gives us the table:
 
@@ -234,7 +234,7 @@ This indicates that there is no one feature widely used to make this prediction.
 <iframe src="{{ 'images/genres_by_share2.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 ### **Prediction on movie features** - Melker (plots)/ Rasmus
 
-Let's look at if it is possible to predict if a movie will be nominated for an oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
+Let's look at if it is possible to predict if a movie will be nominated for an Oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
 
 From looking at the lineplots depicting movie average rating and number of votes relation to being nominated, a general trend upwards can be seen. However, even at the level of the highest ratings, so few movies get nominated, and we can't say with high confidence, that a well- or often-reviewed movie will get nominated
 <div style="display: flex; gap: 1px; align-items: center;">
@@ -244,7 +244,7 @@ From looking at the lineplots depicting movie average rating and number of votes
 
 Logistic regression was not very performant on this. The best f1-score was reached was with 0.14, with recall 1.0 and accuracy 0.1, meaning the model generally only predicted that movies will be nominated, which is not a good model.
 
-The average rating a movie recieves is indicative of several importat factors to take into consideration, e.g.: Movie quality, audience tastes, specific audience, the era of release and actor popularity. The overarching issue is that when actors recieve oscar nominations, it can have an effect on all the afformentioned factors contributiong to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that movies with nominated actors recieve significantly better reviews than movies with not nominated actors. This is also verified throught the Kolmogorov-Smirnov test, which reciews a p-value that is infitesimally small.  
+The average rating a movie recieves is indicative of several importat factors to take into consideration, e.g.: Movie quality, audience tastes, specific audience, the era of release and actor popularity. The overarching issue is that when actors recieve Oscar nominations, it can have an effect on all the afformentioned factors contributiong to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that movies with nominated actors recieve significantly better reviews than movies with not nominated actors. This is also verified throught the Kolmogorov-Smirnov test, which reciews a p-value that is infitesimally small.  
 
 
 
