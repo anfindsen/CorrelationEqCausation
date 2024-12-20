@@ -8,13 +8,12 @@ layout: home
 
 # **Introduction**
 
-Blabalbla
+The Academy awards are famous for being the most coveted awards in the film industry and it is the dream of many aspiring actors to raise the figurine and be inducted in to the club of elite actors and household names. In order to win an Oscar the most important step is to get nominted and in this article we attempt to understand which factors are the most important and at the end give some data-driven advice to actors just starting out. 
 
 # **Data**
-A rundown of our data preprocessing and cleaning can be found <a href="data/">here</a>.
+For the analysis we use the CMU dataset for retrieving metadata about movies, characters and their corresponding actors. Furthermore, we combine this dataset with an IMDb dataset containing ratings for the movies and a table containing Oscar nomination. For a more detailed rundown of our data preprocessing and cleaning please visit our data tab found <a href="data/">here</a>.
 
-After cleaning and merging we have 
-
+After cleaning and processing the data the final dataset has the following characteristics. 
 
 |  | Number of datapoints       | Number of nominated datapoints    |
 |-----------------------------------------|---------------------|--------------------|
@@ -22,12 +21,9 @@ After cleaning and merging we have
 | Different movies              | 5987       | 394    |
 | Different actors                         | 2959               | 284               |
 
-
-
-
 # **Analysis**
 
-You might want to get up to date with some <a href="methods/">mathematical methods</a> we used in the analysis.
+You might want to get up to date with some <a href="methods/">mathematical methods</a> we use in the analysis.
 
 ## **High level analysis, clustering**
 Before getting into the nitty gritty of actor and movie details, let's analyze all the data we have to get a feel for how it varies and how actor and movie features can correlate with Oscar nominations.
