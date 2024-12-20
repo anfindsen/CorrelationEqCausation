@@ -6,7 +6,14 @@ permalink: /methods/
 
 
 
-Here are some of the mathematical methods we use in this analysis:
+Here are some of the mathematical methods and concepts we use in this analysis:
+
+<h3 id="correlation" style="font-weight:bold;">Correlation</h3>
+No correlation implies that there is no causation. Hence this makes for a good starting point of our analysis.
+
+<h3 id="kolmogorov-smirnov" style="font-weight:bold;">Kolmogorov-Smirnov Test</h3>
+For different single dimensional, continuous empirical distributions, the KS test tells us if they come from the same underlying distribution. 
+Hence we can use it to see if for instance the underlying distributions of ratings of Oscar nominated and non-Oscar nominated movies is the same.
 
 <h3 id="binomial-test" style="font-weight:bold;">Binomial test</h3>
 

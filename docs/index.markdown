@@ -228,7 +228,7 @@ Logistic regression is not very performant on this. The best f1-score we reach i
 <iframe src="{{ 'images/review_dist_new_title.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 
-The average rating a movie receives is indicative of several important factors to take into consideration, e.g.: movie quality, audience tastes, specific audience, the era of release, and actor popularity. The overarching issue is that when actors receive oscar nominations, it can affect all the factors contributing to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that films with nominated actors receive significantly better reviews than movies with not nominated actors. This is also verified through the Kolmogorov-Smirnov test, which gets an infinitesimally small p-value.  
+The average rating a movie receives is indicative of several important factors to take into consideration, e.g.: movie quality, audience tastes, specific audience, the era of release, and actor popularity. The overarching issue is that when actors receive oscar nominations, it can affect all the factors contributing to different review scores. Looking at the review distributions for movies with nominated and not nominated actors we can only draw one conclusion with certainty, that films with nominated actors receive significantly better reviews than movies with not nominated actors. This is also verified through the <a href="methods#kolmogorov-smirnov">Kolmogorov-Smirnov</a> test, which gets an infinitesimally small p-value.  
 
 
 
