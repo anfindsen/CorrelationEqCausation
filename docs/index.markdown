@@ -178,6 +178,9 @@ This indicates that there is no one feature widely used to make this prediction.
 
 ### **Genre analysis** - Melker
 
+<iframe src="images/genres_wo_nominations.html" width="500" height="400"></iframe>
+
+
 ### **Prediction on movie features** - Melker (plots)/ Rasmus
 
 Let's look at if it is possible to predict if a movie will be nominated for an oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
