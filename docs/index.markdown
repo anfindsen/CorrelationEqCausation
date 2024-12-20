@@ -134,7 +134,7 @@ For our first analysis let's find out how many movies actors star in before bein
 
 Observing the plots it appears that when actors receive their first Oscar nomination when they have starred in more movies than what most actors have starred in over their career. The average number of movies starred in before receiving an Oscar nomination is 15.13 while in our dataset non-nominated actors have starred in an average of 7.67 movies over their entire career.
 
-However, this analysis is a slightly flawed as the non-nominated sample could contain young actors who are just starting out and are thus weighing down the average. Let's furher analyse this potential flaw by plotting the age distribution in both samples.
+However, this analysis is a slightly flawed as the non-nominated sample could contain young actors who are just starting out and are thus weighing down the average. Let's further analyse this potential flaw by plotting the age distribution in both samples.
 
 ![image](images/age.png)
 
@@ -163,7 +163,7 @@ From the table above we conclude that actors who go on to be Oscar nominated sta
 #### **Actor Network**
 <iframe src="{{ 'images/network_analysis.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
-What makes a great movie is seldom a single performance, it often an ensemble of great performances enhancing each other. Hence we make a deep dive into the actor relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful plotting the graph of all actors as it has over 23 000 nodes. We instead count the number of relationships for nominated and not nominated actors which turn out to 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having stared in 19 movies while not nominated actors have on average starred just 6 movies. From this we can conclude that nominated actors before or after their nominations star in more movies with more actors. 
+What makes a great movie is seldom a single performance, it is often an ensemble of great performances enhancing each other. Hence we take a deep dive into the actor's relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful for plotting the graph of all actors as it has over 23 000 nodes. We instead count the number of relationships for nominated and not nominated actors which turn out to be 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having starred in 19 movies while not nominated actors have on average starred in just 6 movies. From this, we can conclude that nominated actors before or after their nominations star in more movies with more actors. 
 <iframe src="{{ 'images/network_graph_no_ticks.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 Additionally, it appears that all nominated actors have a relationship to atleast another Oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
