@@ -2,6 +2,16 @@
 layout: page
 title: Data Preparation
 permalink: /data/
+carousels:
+  - images: 
+    - image: nandropping_plots/age.jpg
+    - image: nandropping_plots/country.jpg
+    - image: nandropping_plots/ethnicity.jpg
+    - image: nandropping_plots/gender.jpg
+    - image: nandropping_plots/genres.jpg
+    - image: nandropping_plots/height.jpg
+    - image: nandropping_plots/ratings.jpg
+    - image: nandropping_plots/year.jpg
 ---
 
 # **Data**

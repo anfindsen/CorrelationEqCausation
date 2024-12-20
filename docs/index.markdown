@@ -1,15 +1,4 @@
----
-carousels:
-  - images: 
-    - image: images/nandropping_plots/age.jpg
-    - image: images/nandropping_plots/country.jpg
-    - image: images/nandropping_plots/ethnicity.jpg
-    - image: images/nandropping_plots/gender.jpg
-    - image: images/nandropping_plots/genres.jpg
-    - image: images/nandropping_plots/height.jpg
-    - image: images/nandropping_plots/ratings.jpg
-    - image: images/nandropping_plots/year.jpg
----
+
 <!-- ---
 # Feel free to add content and custom Front Matter to this file.
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
