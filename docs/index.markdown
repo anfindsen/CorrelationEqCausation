@@ -39,6 +39,7 @@ Distribution of features before and after data cleaning
 
 {% include carousel.html height="50" width="120" unit="%" duration="100" number="1" %}
 
+
 The distribution of the data changed more drastically for all data than for oscar-nominated data. For example, in the ethnicity feature, indian used to be the most common known ethnicity. However, after cleaning the data it was the second least common value. The number of oscar-nominated indian actors did not reduce however.
 
 We also conducted the Kolmogorov-Smirnov test for all continuous features. With p-value 0.05 and using all data points, changes in distribution were significant for all continuous features (IMDb ratings, height, age, year). However, using nominated only the change in year distribution was significant. (Previous sentence not very clear imo)
@@ -177,9 +178,7 @@ This indicates that there is no one feature widely used to make this prediction.
 ## **What kind of films should you star in?**
 
 ### **Genre analysis** - Melker
-
-<iframe src="images/genres_wo_nominations.html" width="500" height="400"></iframe>
-
+{% include genres_wo_nominations.html %}
 
 ### **Prediction on movie features** - Melker (plots)/ Rasmus
 
