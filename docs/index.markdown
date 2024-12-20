@@ -41,28 +41,24 @@ The Oscar nominees are clearly concentrated in certain regions. This indicates t
   <img src="images/PCA_elbow_all.png" alt="pca elbow" width="49%" />
 </div>
 
-The elbow plot below shows us how much of the total variance in the data is explained by each PC (called explained variance ratio - EVR). This allows us to gauge how 'important' each PC is (if a PC does not explain much about the data, it is not important).
+The elbow plot below shows us how much of the total variance in the data is explained by each PC (called explained variance ratio - EVR). This allows us to gauge how 'important' each PC is.
 
-This heatmap shows how individual features affect principal components, _scaled by the explained variance ratio_. This allows for easier interpretation compared the previous heatmap as values in different columns can be compared directly to judge how much variance is explained by them.
-![image](images/PCA_heatmap_all_weighted.png)
-
-We will see more of these soon.
 
 ## **What kind of actor should you be?**
 Can one optimize to increase their chances of winning an Oscar?
 
 ### **Clustering**
-We start answering the question of whether it is possible to optimize the odds of winning an Oscar by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid to ensure you actually stand a chance of winning.
+We start answering the question of whether it is possible to optimize the odds of winning an Oscar by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid if you want to stand a chance of winning.
 
 **Clustering on all personal numeric features of actors**
 
-This is the result of T-SNE on _all_ features pertaining to the actors themselves - `age`, `gender`, (one hot encoded) `ethnicity`, `height` and also the augmented features capturing experience - `number_of_movies_starred_in`, `average_rating_previous_movies` and `average_box_office_revenue_previous_movies`.
+This is the result of T-SNE on _all_ features pertaining to the actors themselves - `age`, `gender`, `ethnicity` (one hot encoded), `height` and also the augmented features capturing experience - `number of movies starred in`, `average rating previous movies` and `average box office revenue previous movies`.
 ![image](images/T_SNE_actor_personal_features.png)
 
 
 *T-sne normalized=True, perplexity=50*
 
-It can be seen that there are multiple clusters, with some having more nominated actors. We suspect this could have to do with clusters corresponding to ethnicities
+It can be seen that there are multiple clusters, with some having more nominated actors. We suspect this could have to do with clusters corresponding to ethnicities.
 
 **Effect on clusters of dropping ethnicities**
 
@@ -76,17 +72,6 @@ On removing ethnicities, we get the following plots from PCA and T-SNE respectiv
 Interestingly, T-SNE showed the Oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features).
 PCA still clearly shows the nominees cluster to be a well defined subset of all actors and the Oscar winners cluster to be a subset of the nominees cluster.
 Thus ethnicity could be an important feature to explain variance in the data.
-
-The heatmap below shows the contributions of different features to different Principal Components, weighted by the amount of variance that each PC explains in the data - called explained variance ratio (EVR) (so for example, all values for PC1 are weighted by the EVR for PC1, and all those for PC5 are weighted by the EVR for PC5, allowing for direct comparison of the overall importance of each feature).
-<p align="center">
-  <img src="images/PCA_heatmap_actor_no_eth_weighted.png" width="80%" />
-</p>
-We see large values (absolute) for all the features, indicating that they are quite independant. This is also confirmed by an elbow plot of the explained-variance-ratios, with the last PC explaining 10% of the variance in the data.
-(TODO set scale to show how flat it is better)
-
-<p align="center">
-  <img src="images/PCA_actor_personal_wo_eth_elbow.png"  width="45%" style="margin: auto" />
-</p>
 
 **Effect on clusters of dropping actor experience on clusters**
 
