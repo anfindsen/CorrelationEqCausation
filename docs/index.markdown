@@ -114,9 +114,11 @@ Can one optimize to increase their chances of winning an oscar?
 ### Clustering - Tejas
 We start answering the question of whether it is possible to optimize the odds of winning an oscar by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid to ensure you actually stand a chance of winning.
 
-
+#### Clustering on all personal numeric features of actors
 This is the result of T-SNE on _all_ features pertaining to the actors themselves - `age`, `gender`, (one hot encoded) `ethnicity`, `height` and also the augmented features capturing experience - `number_of_movies_starred_in`, `average_rating_previous_movies` and `average_box_office_revenue_previous_movies`.
 ![image](images/T_SNE_actor_personal_features.png)
+
+#### Effect of dropping ethnicities on clusters
 On removing ethnicities, we get the following plots from PCA and T-SNE respectively - 
 ![image](images/PCA_actor_personal_wo_ethnicity.png)
 ![image](T_SNE_actor_personal_wo_ethnicity.png)
@@ -131,7 +133,7 @@ We see large values (absolute) for all the features, indicating that they are qu
 ![image](images/PCA_actor_personal_wo_eth_elbow.png)
 
 
-
+####
 To gauge the importance of the augmented features on experience, let's try clustering without them and compare the results. We drop the three augmented features and use the top 10 ethnicities by frequency, one-hot-encoded, along with age, gender and height.
 ![image](images/PCA_scatter_personal_no_augmented.png)
 ![image](images/T_SNE_personal_no_augmented.png)
