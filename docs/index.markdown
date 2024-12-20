@@ -210,7 +210,7 @@ The genre with the highest share of Oscar nominated performances is New Hollywoo
 
 In recent years, the most popular genres at the Oscars has not had as high success rate as the most popular genres in earlier years. Up top is Period piece, Romantic drama and Crime Thriller. 
 
-In summary, there are genres to avoid, there has been significant historic oppurtunity in choosing genere, 
+In summary, there are genres to avoid, there has been significant historic oppurtunity in choosing genere.
 
 
 ### **Modelling on movie features**
