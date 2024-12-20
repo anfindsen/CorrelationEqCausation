@@ -24,15 +24,17 @@ Blabalbla
 
 # **Data**
 
-## **Data merging** - Erik
+
+
+## **Data merging**
 For the following analysis we used the CMU dataset containing tables of movies and of characters. The movies and characters have a one-to-many 
 relationship allowing us to connect them. Furthermore, the character table contains a column specifying the actor playing the character. This dataset is supplemented with IMDb dataset to find the ratings for the movies and an dataset containing Oscar nomination.
 
 Further we introduce three augmented features: Number of movies starred in, average rating of previous movies, average box office revenue of previous movies.   
 
-The Oscars are comprised of many different cateogries. However, in the coming analysis we are interested in the following three categories for both men and women: actor/actress, actor/actress in a leading role, actor/actress in a supporting role. 
+The Oscars are comprised of many different categories. However, in the coming analysis we are interested in the following three categories for both men and women: actor/actress, actor/actress in a leading role, actor/actress in a supporting role. 
 
-## **Data cleaning** - Rasmus
+## **Data cleaning**
 
 Before looking at the results of our analysis, we need to discuss a limitation of ours: overlap of clean data. As we use data from 3 different sources, the overlap of movies and actors accounts for a fragment of the total data. However, as we want to have equality in the analysis of our features, we need to include the same datapoints for all parts of our analysis. Thus we removed all datapoints with unknown values from our study. Of course this can change the distribution of the data.
 
@@ -49,9 +51,9 @@ The distribution of the data changed more drastically for all data than for osca
 
 We also conducted the Kolmogorov-Smirnov test for all continuous features. With p-value 0.05 and using all data points, changes in distribution were significant for all continuous features (IMDb ratings, height, age, year). However, using nominated only the change in year distribution was significant. (Previous sentence not very clear imo)
 
-# **Analysis** - TODO come up with better headers
+# **Analysis**
 
-Before getting started with the analysis, you might want to get up to date with some <a href="methods/">mathematical methods</a> we used.
+Before getting started with the analysis, you might want to get up to date with some mathematical methods we used <a href="methods/">here</a>. We will also link to this page when talking about these mathematical concepts.
 
 ## **High level analysis** - Clustering
 Before looking into the nitty gritty of actor and movie details, let's analyze all the data we have to get a feel for how it varies and how actor and movie features can correlate with Oscar nominations.
@@ -59,11 +61,11 @@ Before looking into the nitty gritty of actor and movie details, let's analyze a
 We only use these methods on numeric data.
 
 
-In the following plot, we see the results of applying T-SNE to generate 2-dimensional embeddings of all the cleaned data of numeric type.
+In the following plot, we see the results of applying <a href="methods#clustering">T-SNE</a> to generate 2-dimensional embeddings of all the cleaned data of numeric type.
 ![image](images/T_SNE_all_numerical_features.png)
 
 
-The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees near by). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an oscar. We find that the results of PCA also support this conclusion.
+The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees near by). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an oscar. We find that the results of <a href="methods#clustering">PCA</a> also support this conclusion.
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/PCA_scatter_all_features.png" alt="pca" width="49%" />
   <img src="images/PCA_elbow_all.png" alt="pca elbow" width="49%" />
@@ -84,7 +86,7 @@ We start answering the question of whether it is possible to optimize the odds o
 
 **Clustering on all personal numeric features of actors**
 
-This is the result of T-SNE on _all_ features pertaining to the actors themselves - `age`, `gender`, (one hot encoded) `ethnicity`, `height` and also the augmented features capturing experience - `number_of_movies_starred_in`, `average_rating_previous_movies` and `average_box_office_revenue_previous_movies`.
+This is the result of <a href="methods#clustering">T-SNE</a> on _all_ features pertaining to the actors themselves - `age`, `gender`, (one hot encoded) `ethnicity`, `height` and also the augmented features capturing experience - `number_of_movies_starred_in`, `average_rating_previous_movies` and `average_box_office_revenue_previous_movies`.
 ![image](images/T_SNE_actor_personal_features.png)
 
 
@@ -94,15 +96,15 @@ It can be seen that there are multiple clusters, with some having more nominated
 
 **Effect of dropping ethnicities on clusters**
 
-On removing ethnicities, we get the following plots from PCA and T-SNE respectively:
+On removing ethnicities, we get the following plots from <a href="methods#clustering">PCA</a> and <a href="methods#clustering">T-SNE</a> respectively:
 
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/T_SNE_actor_personal_wo_ethnicity.png" alt="pca personal" width="49%" />
   <img src="images/PCA_actor_personal_wo_ethnicity.png" alt="pca persoal wo ethnicity" width="49%" />
 </div>
 
-Interestingly, T-SNE showed the oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features).
-PCA still clearly shows the nominees cluster to be a well defined subset of all actors and the oscar winners cluster to be a subset of the nominees cluster.
+Interestingly, <a href="methods#clustering">T-SNE</a> showed the oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features).
+<a href="methods#clustering">PCA</a> still clearly shows the nominees cluster to be a well defined subset of all actors and the oscar winners cluster to be a subset of the nominees cluster.
 Thus ethnicity could be an important feature to explain variance in the data.
 
 The heatmap below shows the contributions of different features to different Principal Components, weighted by the amount of variance that each PC explains in the data - called explained variance ratio (EVR) (so for example, all values for PC1 are weighted by the EVR for PC1, and all those for PC5 are weighted by the EVR for PC5, allowing for direct comparison of the overall importance of each feature).
@@ -129,7 +131,7 @@ We still see regions to avoid being in if we want to win an oscar, but this is a
 
 Now that we have a feel for how the features vary, lets dive in and rigorously evaluate the impact of every personal feature.
 
-### **Nationality** - John
+### **Nationality**
 How does nationality correlate with being nominated for an Oscar? Let's have a look at the 10 countries with the most Oscar nominations in our cleaned dataset:
 
 ![image](images/oscar-nom-per-country.png)
@@ -143,7 +145,7 @@ As we can see by these plots, the US is in general overrepresented in our datase
 
 To our surprise, there does not seem to be a clear skew in favor of American actors/movies in our dataset! In fact, actors in British movies tend to be nominated more frequently.
 
-This needs to be analyzed more rigorously, and that is where our binomial test enters the picture. We analyze the distribution of American vs. non-American movies in our dataset, with the first category containing all actors in movies where the US is one of the nationalities, or the only one (many movies have multiple nationalities). First off, we find the ratio of American movies in our dataset being nominated. Then we perform the binomial test to see if the ratio of non-American movies being nominated is significantly different from the American ratio. We choose alpha=0.05 as the threshold to discard the null hypothesis for this test.
+This needs to be analyzed more rigorously, and that is where our <a href="methods#binomial-test">binomial test</a> enters the picture. We analyze the distribution of American vs. non-American movies in our dataset, with the first category containing all actors in movies where the US is one of the nationalities, or the only one (many movies have multiple nationalities). First off, we find the ratio of American movies in our dataset being nominated. Then we perform the binomial test to see if the ratio of non-American movies being nominated is significantly different from the American ratio. We choose alpha=0.05 as the threshold to discard the null hypothesis for this test.
 
 Again, to our surprise, we find that while the ratio is slightly higher for American movies, they do not have a significantly higher ratio of Oscar nominations that non-American movies, with a p-value of 0.56 (far higher than 0.05). This is likely very affected by our data cleaning process, where we as previously mentioned (TODO: Add reference) remove a lot of data from countries like India (removing much of Bollywood from the equation). However, with this result in mind we decide to keep non-American data in our dataset for all the following analysis, as the data cleaning has removed the expected multicolinearity between country and Oscar nomination.
 
@@ -151,7 +153,7 @@ Although the nationalities are quite balanced in our cleaned dataset, it is also
 
 TL;DR: In general, actors in American movies have a higher chance of winning an Oscar, but in our cleaned dataset this skew is gone.
 
-### **Career analysis** - Erik
+### **Career analysis**
 In this section we are intersted in finding out more about what characterizes the career of Oscar nominated actors. Furthermore, we explore how an actor's career is impacted after being nominated for their first Oscar. 
 
 For this analysis we split the career of an Actor into three parts: Before being nominated for their first Oscar, at the moment they were nominated for their first Oscar and the career after their first nomination. For actors who have never received or have yet to receive an Oscar nomination we observe their career as one phase. Moreover, for the first part we are only concerned about actors who have been active in the 21st centuary. The reason for this is that our dataset starts at 1928 and for the analysis to make sense we need to observe the actors from the start of their career. 
@@ -170,7 +172,7 @@ The average age of the nominated group is 41.26 and 40.17 for the non-nominated 
 
 ![image](images/movies_starred_in_2.png)
 
-In the new sample the average number of movies starred in is 7.92. Let's further investigate if the difference in averages is significant. To do this we utilise and T-test and calculate a P-value of 1.27e-27. This P-value falls below the threshold and we thus reject the null hypothesis being that the averages between the samples would be the same and accept the alternative hypothesis that they are different.  
+In the new sample the average number of movies starred in is 7.92. Let's further investigate if the difference in averages is significant. To do this we utilise and <a href="methods#t-test">T-test</a> and calculate a P-value of 1.27e-27. This P-value falls below the threshold and we thus reject the null hypothesis being that the averages between the samples would be the same and accept the alternative hypothesis that they are different.  
 
 From this we make the conclusion that actors need to star in around 15 movies on average before being nominated for their first Oscar. In addition, we conclude that one of the reasons why some actors may not have been nominated for an Oscar is due to not having starred in enough movies yet or throught out their career.
 
@@ -188,20 +190,20 @@ Observing the plot above our initial conclusion is that actors going on to be no
 From the table above we conclude that actors who go on to be Oscar nominated star in more crically acclaimed movies than actors who do not end up being nominated. However, the comercial success of movies starred in seem to not matter for receiving Oscar nomination as the P-value is 0.82 and thus we accept the null hypothesis of the samples means being equal. A reason for this may be that some genres of movies appeal to the critics but not to the masses.
 
 
-#### **Actor Network** - Melker
+#### **Actor Network**
 <iframe src="{{ 'images/network_analysis.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 What makes a great movie is seldom a single performance, it often an ensemble of great performances enhancing each other. Hence we make a deep dive into the actor relationships with other actors. We define a relationship as having performed in the same movie as another actor, i.e. actors will be nodes and shared performances between actors are edges in a graph. It is however not useful plotting the graph of all actors as it has over 23 000 nodes. We instead count the number of relationships for nominated and not nominated actors which turn out to 72.8 and 37.2 respectively. Nominated actors have this number of relationships while on average having stared in 8.9 movies while not nominated actors have on average starred in 7.9 movies. From this we see two options: 1. Nominated actors perofmr in movies with more actors, creatingmore relationships per movie starred in. 2. Nominated actors are in more popular movies where more actors are registered and hence in the dataset.
 <iframe src="{{ 'images/network_graph.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 Additionally, it appears that all nominated actors have a relationship to atleast another oscar nominated actor. This enforces the hypothesis that great performances are not stand-alone but rather enforced by other performances. 
-### **Prediction on actor features** - Rasmus
+### **Prediction on actor features**
 We explored the possibility to predict whether a person is nominated for an oscar for a movie. We tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
 
 #### **Predicting from personal features**
 Firstly, we tried if it is possible to predict being nomintated purely from personal features such as gender, height, ethnicity and age. If that were possible it would indicate that there is a possibility for a bias for or against certain people, not connected to their skill in acting, which would be bad.
 
-However, both the logistic regression and decision tree proved incapable of doing so, even with rebalancing the data the models achieved a maximum F1 score of 0.05. This indicates that we cannot simply tell who will get nominated by how they look like.
+However, both the <a href="methods#logistic-regression">logistic regression</a> and decision tree proved incapable of doing so, even with rebalancing the data the models achieved a maximum F1 score of 0.05. This indicates that we cannot simply tell who will get nominated by how they look like.
 
 
 #### **Predicting with all features**
@@ -224,7 +226,7 @@ This indicates that there is no one feature widely used to make this prediction.
 
 ## **What kind of films should you star in?**
 
-### **Genre analysis** - Melker
+### **Genre analysis**
 <iframe src="{{ 'images/genres_wo_nominations.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 <iframe src="{{ 'images/most_popular_genres.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
