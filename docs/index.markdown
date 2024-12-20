@@ -227,7 +227,7 @@ This indicates that there is no one feature widely used to make this prediction.
 ### **Genre analysis** - Melker
 <iframe src="{{ 'images/genres_wo_nominations.html' | relative_url }}" width="100%" height="600px" frameborder="0"></iframe>
 
-<iframe src="{{ 'images/network_graph.html' | relative_url }}" width="100%" height="600px" frameborder="0"></iframe>
+<iframe src="{{ 'images/most_popular_genres.html' | relative_url }}" width="100%" height="600px" frameborder="0"></iframe>
 
 
 ### **Prediction on movie features** - Melker (plots)/ Rasmus
