@@ -8,10 +8,13 @@ layout: home
 
 # **Introduction**
 
-The Academy awards are famous for being the most coveted awards in the film industry, and it is the dream of many aspiring actors to raise the figurine and be inducted in to the club of elite actors and household names. In order to win an Oscar the most important step is to get nominated, and in this article we attempt to understand which factors are the most important, and at the end give some data-driven advice to actors that are starting out. 
+The Academy awards are famous for being the most coveted awards in the film industry, and it is the dream of many aspiring actors to raise the figurine and be inducted in to the club of elite actors and household names. In order to win an Oscar the most important step is to get nominated, and in this article we attempt to understand which factors are the most important to get nominated. In the end we will give some data-driven advice to actors that are starting out. 
 
 # **Data**
-For the analysis we use the CMU dataset for retrieving metadata about movies, characters and their corresponding actors. Furthermore, we combine this dataset with an IMDb dataset containing ratings for the movies and a table containing Oscar nomination. For a more detailed rundown of our data preprocessing and cleaning please visit our data tab found <a href="data/">here</a>.
+For the analysis we use the the CMU Movie Summary Corpus. This dataset contains information about movies (such as release date, revenue, run time, etc.), actors involved in the movies and plot summaries.
+The CMU dataset also contains information about the country of origin of the movie, languages used, etc.
+
+We combine this dataset with an <a href="https://datasets.imdbws.com/">IMDb dataset</a> containing ratings for the movies and <a href="https://www.kaggle.com/datasets/unanimad/the-oscar-award">a dataset from Kaggle</a> containing Oscar nominations. For a more detailed rundown of our data preprocessing and cleaning please visit our data tab found <a href="data/">here</a>.
 
 After cleaning and processing the data the final dataset has the following characteristics. 
 
@@ -21,9 +24,11 @@ After cleaning and processing the data the final dataset has the following chara
 | Different movies              | 5987       | 394    |
 | Different actors                         | 2959               | 284               |
 
+One datapoint here represents one actor in a single movie. So for example, a datapoint could be Bruce Willis in Die Hard, and all associated features with that actor in that role. This includes his personal features, movie features, and whether Willis was nominated for an Oscar.
+
 # **Analysis**
 
-You might want to get up to date with some <a href="methods/">mathematical methods</a> we use in the analysis.
+Before digging into the analysis, you might want to get up to date with some <a href="methods/">mathematical methods</a> we use.
 
 ## **Patterns in the data**
 Before getting into the nitty gritty of actor and movie details, let's analyze all the data we have to get a feel for how it varies and how actor and movie features can correlate with Oscar nominations.
@@ -31,24 +36,24 @@ Before getting into the nitty gritty of actor and movie details, let's analyze a
 We only use these methods on numeric data.
 
 
-In the following plot, we see the results of applying T-SNE to generate 2-dimensional embeddings of all the cleaned data of numeric type.
+In the following plot, we see the results of applying <a href="methods#clustering">T-SNE</a> to generate 2-dimensional embeddings of all the cleaned data of numeric type.
 ![image](images/T_SNE_all_numerical_features.png)
 
 
-The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees near by). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an Oscar. We find that the results of PCA also support this conclusion.
+The Oscar nominees are clearly concentrated in certain regions. This indicates that it should be possible to predict whether someone _will not_ get nominated with reasonable accuracy (if for instance they fall in the regions without any nominees nearby). Entries of nominees do, however, overlap with entries that were not nominated, so we cannot yet say if it is possible to reliably predict whether someone _will_ get nominated for an Oscar. We find that the results of <a href="methods#clustering">PCA</a> also support this conclusion.
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/PCA_scatter_all_features.png" alt="pca" width="49%" />
   <img src="images/PCA_elbow_all.png" alt="pca elbow" width="49%" />
 </div>
 
-The elbow plot below shows us how much of the total variance in the data is explained by each PC (called explained variance ratio - EVR). This allows us to gauge how 'important' each PC is.
+The elbow plot above shows us how much of the total variance in the data is explained by each principal component (called explained variance ratio - EVR). This allows us to gauge how 'important' each PC is. In other words, we can see that the scatter plot explains about 40% of the variance in our data (PC1 + PC2).
 
 
 ## **What kind of actor should you be?**
-Can one optimize to increase their chances of winning an Oscar?
+What can you optimize to increase your chances of being nominated for an Oscar? In this section, we will analyze clusters you should try to belong to, and personal features you should have, in order to maximize your chances of being nominated.
 
 ### **Clustering**
-We start answering the question of whether it is possible to optimize the odds of winning an Oscar by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid if you want to stand a chance of winning.
+We start answering these questions by looking at the data. Different clustering methods applied to different subsets of actor personal features all reveal the same thing - there are things to avoid if you want to stand a chance of being nominated.
 
 **Clustering on all personal numeric features of actors**
 
@@ -58,24 +63,24 @@ This is the result of T-SNE on _all_ features pertaining to the actors themselve
 
 *T-sne normalized=True, perplexity=50*
 
-It can be seen that there are multiple clusters, with some having more nominated actors. We suspect this could have to do with clusters corresponding to ethnicities.
+It can be seen that there are multiple clusters, with some having more nominated actors than others. This means that this combination of features can explain whether an actor belongs to a group that is nominated more often or not. We suspect these clusters are related to ethnicities, let's have a look:
 
 **Effect on clusters of dropping ethnicities**
 
-On removing ethnicities, we get the following plots from PCA and T-SNE respectively:
+On removing ethnicities, we get the following plots from T-SNE and PCA respectively:
 
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/T_SNE_actor_personal_wo_ethnicity.png" alt="pca personal" width="49%" />
   <img src="images/PCA_actor_personal_wo_ethnicity.png" alt="pca persoal wo ethnicity" width="49%" />
 </div>
 
-Interestingly, T-SNE showed the Oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features).
+Interestingly, T-SNE showed the Oscar winners and nominees scattered throughout the plots quite uniformly for all the hyperparameter settings we tried (perplexities from 5 to 45 in steps of 10, with and without normalization of features). This means that ethnicity could be a factor in whether you are nominated or not.
+
 PCA still clearly shows the nominees cluster to be a well defined subset of all actors and the Oscar winners cluster to be a subset of the nominees cluster.
-Thus ethnicity could be an important feature to explain variance in the data.
 
 **Effect on clusters of dropping actor experience on clusters**
 
-To gauge the importance of the augmented features on experience, let's try clustering without them and compare the results. We drop the three augmented features and use the top 10 ethnicities by frequency, one-hot-encoded, along with age, gender and height.
+To gauge the importance of the augmented features we created (nr. of movies previously acted in, avg. rating of previous movies, avg. box office revenue of previous movies), let's try clustering without them and compare the results. We drop the three augmented features and use the top 10 ethnicities by frequency, one-hot-encoded, along with age, gender and height.
 <div style="display: flex; gap: 1px; align-items: center;">
   <img src="images/PCA_scatter_personal_no_augmented.png"  width="49%" />
   <img src="images/T_SNE_personal_no_augmented.png" width="49%" />
@@ -92,6 +97,7 @@ How does nationality correlate with being nominated for an Oscar? Let's have a l
 ![image](images/oscar-nom-per-country.png)
 
 Unsurprisingly, the US is clearly at the top of this list. Here is the same data, with only the US, UK and Others:
+
 ![image](images/oscar-nom-per-country-others.png)
 
 As we can see by these plots, the US is in general overrepresented in our dataset with regards to Oscar nominations. This makes sense, as the movie industry is very centered on America. Our most important question here, however, is how does the Oscar nomination frequency change with nationality? Let's see the previous plot again, but this time adjusted for the total number of movies from each of the categories:
@@ -100,7 +106,7 @@ As we can see by these plots, the US is in general overrepresented in our datase
 
 To our surprise, there does not seem to be a clear skew in favor of American actors/movies in our dataset! In fact, actors in British movies tend to be nominated more frequently.
 
-This needs to be analyzed more rigorously, and that is where our binomial test enters the picture. We analyze the distribution of American vs. non-American movies in our dataset, with the first category containing all actors in movies where the US is one of the nationalities, or the only one (many movies have multiple nationalities). First off, we find the ratio of American movies in our dataset being nominated. Then we perform the binomial test to see if the ratio of non-American movies being nominated is significantly different from the American ratio. We choose alpha=0.05 as the threshold to discard the null hypothesis for this test.
+This needs to be analyzed more rigorously, and that is where our <a href="methods#binomial-test">binomial test</a> enters the picture. We analyze the distribution of American vs. non-American movies in our dataset, with the first category containing all actors in movies where the US is one of the nationalities, or the only one (many movies have multiple nationalities). First off, we find the ratio of American movies in our dataset being nominated. Then we perform the binomial test to see if the ratio of non-American movies being nominated is significantly different from the American ratio. We choose alpha=0.05 as the threshold to discard the null hypothesis for this test.
 
 Again, to our surprise, we find that while the ratio is slightly higher for American movies, they do not have a significantly higher ratio of Oscar nominations that non-American movies, with a p-value of 0.56 (far higher than 0.05). This is likely very affected by our data cleaning process, where we as previously mentioned (TODO: Add reference) remove a lot of data from countries like India (removing much of Bollywood from the equation). However, with this result in mind we decide to keep non-American data in our dataset for all the following analysis, as the data cleaning has removed the expected multicolinearity between country and Oscar nomination.
 
