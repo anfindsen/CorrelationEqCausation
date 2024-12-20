@@ -37,6 +37,7 @@ We only use these methods on numeric data.
 
 
 In the following plot, we see the results of applying <a href="methods#clustering">T-SNE</a> to generate 2-dimensional embeddings of all the cleaned data of numeric type.
+
 ![image](images/clustering/tejas1.png)
 
 
