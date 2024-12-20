@@ -8,7 +8,7 @@ layout: home
 
 # **Introduction**
 
-The Academy awards are famous for being the most coveted awards in the film industry and it is the dream of many aspiring actors to raise the figurine and be inducted in to the club of elite actors and household names. In order to win an Oscar the most important step is to get nominted and in this article we attempt to understand which factors are the most important and at the end give some data-driven advice to actors just starting out. 
+The Academy awards are famous for being the most coveted awards in the film industry, and it is the dream of many aspiring actors to raise the figurine and be inducted in to the club of elite actors and household names. In order to win an Oscar the most important step is to get nominated, and in this article we attempt to understand which factors are the most important, and at the end give some data-driven advice to actors that are starting out. 
 
 # **Data**
 For the analysis we use the CMU dataset for retrieving metadata about movies, characters and their corresponding actors. Furthermore, we combine this dataset with an IMDb dataset containing ratings for the movies and a table containing Oscar nomination. For a more detailed rundown of our data preprocessing and cleaning please visit our data tab found <a href="data/">here</a>.
@@ -17,7 +17,7 @@ After cleaning and processing the data the final dataset has the following chara
 
 |  | Number of datapoints       | Number of nominated datapoints    |
 |-----------------------------------------|---------------------|--------------------|
-| total datapoints              | 23812       | 519    |
+| Total datapoints              | 23812       | 519    |
 | Different movies              | 5987       | 394    |
 | Different actors                         | 2959               | 284               |
 
