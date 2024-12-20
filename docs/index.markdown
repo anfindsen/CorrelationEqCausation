@@ -205,7 +205,7 @@ On the otherhand, there are also genres that have many actor nominations, e.g. D
 
 
 <iframe src="{{ 'images/genres_by_share2.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
-The genre with the highest share of Oscar nominated performances is New Hollywood with 27% of performances being nominated. Coming second is Biographical film with only 8% of performances being nominated. With a time machine, travelling back to the 1960s-1980s would be the most optimal for an actor winning an Oscar. Hence we will need to look at more recent successful genres. 
+The genre with the highest share of Oscar nominated performances is New Hollywood with 27% of performances being nominated. Coming second is Biographical film with only 8% of performances being nominated. The issue is that New Hollywood was a genre active between 1960 and 1980. So, with a time machine, travelling back to the 1960s-1980s would be the most optimal for an actor winning an Oscar. Hence we will need to look at more recent successful genres. 
 <iframe src="{{ 'images/genres_by_share_new.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 In recent years, the most popular genres at the Oscars has not had as high success rate as the most popular genres in earlier years. Up top is Period piece, Romantic drama and Crime Thriller. 
