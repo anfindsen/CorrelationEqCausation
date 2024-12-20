@@ -17,17 +17,17 @@ carousels:
 layout: home
 --- -->
 
-# Introduction
+# **Introduction**
 
 Blabalbla
 
 
-# Data
+# **Data**
 
-## Data merging - Erik
+## **Data merging** - Erik
 a
 
-## Data cleaning - Rasmus
+## **Data cleaning** - Rasmus
 
 Before looking at the results of our analysis, we need to discuss a limitation of ours: overlap of clean data. As we use data from 3 different sources, the overlap of movies and actors accounts for a fragment of the total data. However, as we want to have equality in the analysis of our features, we need to include the same datapoints for all parts of our analysis. Thus we removed all datapoints with unknown values from our study. Of course this can change the distribution of the data.
 
@@ -43,50 +43,11 @@ The distribution of the data changed more drastically for all data than for osca
 
 We also conducted the Kolmogorov-Smirnov test for all continuous features. With p-value 0.05 and using all data points, changes in distribution were significant for all continuous features (IMDb ratings, height, age, year). However, using nominated only the change in year distribution was significant. (Previous sentence not very clear imo)
 
+# **Analysis** - TODO come up with better headers
 
-# Mathematical methods (Not too heavy, mmaybe put in separate page)
+Before getting started with the analysis, you might want to get up to date with some <a href="methods/">mathematical methods</a> we used.
 
-First off, we want to define some of the mathematical methods we use in this analysis.
-
-## Binomial test - John
-
-The binomial test calculates the probability of getting a certain number of positives, given a binary probability. This can be used to estimate whether we have reason to believe that two distributions are in fact the same. This is the formula for calculating this probability (AKA the p-value):
-![image](images/binom-test.png)\\
-*Source: <a href="https://sites.utexas.edu/sos/files/2015/06/binom.png">https://sites.utexas.edu/sos/files/2015/06/binom.png</a>*
-
-With tests like these you typically choose an alpha value as a threshold. If the p-value from the test is below this alpha value, you can discard the null hypothesis, and conclude that the distributions are significantly different.
-
-Source for this section: <a href="https://sites.utexas.edu/sos/guided/inferential/categorical/univariate/binomial/">https://sites.utexas.edu/sos/guided/inferential/categorical/univariate/binomial/</a>
-
-## T-test - Erik
-
-## Clustering - Tejas
-We use T-SNE to visually inspect the data for natural clusters that might also be informative about the chances of being nominated for oscars. T-SNE measures the closeness of pairs of points in higher dimensional spaces and then transforms the points to a lower dimension while trying to preserve this notion of closeness and distance  (i.e. points that were close in higher dimensions should stay close in the lower dimension and vice versa). This allows for easier visualization and handling of high dimensional data, but comes at the cost of interpretability, as we cannot exactly say how the original features contribute individually to the new features in the reduced space.
-
-We also use PCA in a similar fashion. PCA attempts to summarize the information in high dimensional data using a smaller set of uncorrelated variables called Principal Components (PCs) that capture most of the variance in the data. PCs are linear combinations of the original features. This makes PCA better than T-SNE for explainability as we can see how much each feature contributes to each principal component.
-
-(_I am adding my general analysis here coz no designated place as of now, can tie into other parts as needed_)
-Lets analyze all the data we have to get a feel for how it varies and also understand these methods and how they are used a bit better. 
-
-
-## Logistic regression - Rasmus
-
-Logistic regression is a method for binary classification. It works by essentially mapping linear regression output into a value between 0 and 1 i.e. a probability to belong to either class. So computing linear regression takes 3 steps:
-1. Calculate linear regression
-z = w_0 + w_1 * x_1 + w_2 * x_2 + ... + w_n * x_n
-2. Pass the output through the sigmoid to get a probability
-p = 1 / (1 + exp(-z))
-3. Use a (freely chosen) threshold for classification
-if p >= threshold, predict 1, else 0
-
-Finding the correct weights w_0, w_1, ..., w_n can be done through gradient descent or least squared method.
-
-A useful side product of this method is finding what features have higher weights when predicting a target. Higher weights indicate the importance of that feature towards the target.
-
-
-# Analysis - TODO come up with better headers
-
-## High level analysis - Clustering
+## **High level analysis** - Clustering
 Before looking into the nitty gritty of actor and movie details, let's analyze all the data we have to get a feel for how it varies and how actor and movie features can correlate with Oscar nominations.
 
 We only use these methods on numeric data.
@@ -162,7 +123,7 @@ We still see regions to avoid being in if we want to win an oscar, but this is a
 
 Now that we have a feel for how the features vary, lets dive in and rigorously evaluate the impact of every personal feature.
 
-### Nationality - John
+### **Nationality** - John
 How does nationality correlate with being nominated for an Oscar? Let's have a look at the 10 countries with the most Oscar nominations in our cleaned dataset:
 
 ![image](images/oscar-nom-per-country.png)
@@ -184,18 +145,18 @@ Although the nationalities are quite balanced in our cleaned dataset, it is also
 
 TL;DR: In general, actors in American movies have a higher chance of winning an Oscar, but in our cleaned dataset this skew is gone.
 
-### Career analysis - Erik
+### **Career analysis** - Erik
 
-### Prediction on actor features - Rasmus
-We explored the possibility to predict whether a person is nominated for an oscar for a movie. We used tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
+### **Prediction on actor features** - Rasmus
+We explored the possibility to predict whether a person is nominated for an oscar for a movie. We tried using linear regression and decision trees for this. A challenge is the unbalanced state of the data, with there being 45 times more actors who were not nominated. To account for this we applied both over- and undersampling techniques.
 
-#### Predicting from personal features
+#### **Predicting from personal features**
 Firstly, we tried if it is possible to predict being nomintated purely from personal features such as gender, height, ethnicity and age. If that were possible it would indicate that there is a possibility for a bias for or against certain people, not connected to their skill in acting, which would be bad.
 
 However, both the logistic regression and decision tree proved incapable of doing so, even with rebalancing the data the models achieved a maximum F1 score of 0.05. This indicates that we cannot simply tell who will get nominated by how they look like.
 
 
-#### Predicting with all features
+#### **Predicting with all features**
 Predicting with all of the features we have led to more promising results. While logistic regression still did not perform, using a decisiontree with undersampling led to our best-performing model (in therms of F1-score) with:
 * Accuracy 0.953
 * Precision 0.196
@@ -213,13 +174,11 @@ Extracting the highest feature importance gives us the table:
 | actor_age | 0.081904 |
 This indicates that there is no one feature widely used to make this prediction.
 
-## What kind of films should you star in?
+## **What kind of films should you star in?**
 
-### Genre analysis - Melker
-<iframe src="images/genres_wo_nominations.html" width="300" height="300"></iframe>
+### **Genre analysis** - Melker
 
-
-### Prediction on movie features - Melker (plots)/ Rasmus
+### **Prediction on movie features** - Melker (plots)/ Rasmus
 
 Let's look at if it is possible to predict if a movie will be nominated for an oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
 
@@ -236,4 +195,4 @@ Logistic regression was not very performant on this. The best f1-score was reach
 
 
 
-## Conclusion/recommendations
+## **Conclusion/recommendations**
