@@ -235,3 +235,14 @@ The average rating a movie receives is indicative of several important factors t
 
 
 ## **Conclusion/recommendations**
+
+So, if you're an actor starting out who wants to make it big, here are our data-driven recommendations:
+
+- Firstly, try to gain access to other great actors. As we have seen, Oscar-nominated actors are usually well-connected.
+- Secondly, it helps to be American, or at least act in American movies.
+- You want to pick genres that have high chances of being nominated. Not just any type of movie will make it.
+- Star in good movies that are critically acclaimed. Don't worry about the box office.
+- Don't give up! Actors usually star in 15 movies before getting their first nomination.
+
+
+With these tips in mind, we wish you the best for your future as an aspiring actor!
