@@ -12,20 +12,27 @@ First off, we want to define some of the mathematical methods we use in this ana
 <h2 id="binomial-test">Binomial test</h2>
 
 The binomial test calculates the probability of getting a certain number of positives, given a binary probability. This can be used to estimate whether we have reason to believe that two distributions are in fact the same. This is the formula for calculating this probability (AKA the p-value):
-![image](images/binom-test.png)\\
+
+![image](images/binom-test.png)
+
 *Source: <a href="https://sites.utexas.edu/sos/files/2015/06/binom.png">https://sites.utexas.edu/sos/files/2015/06/binom.png</a>*
 
 With tests like these you typically choose an alpha value as a threshold. If the p-value from the test is below this alpha value, you can discard the null hypothesis, and conclude that the distributions are significantly different.
 
 Source for this section: <a href="https://sites.utexas.edu/sos/guided/inferential/categorical/univariate/binomial/">https://sites.utexas.edu/sos/guided/inferential/categorical/univariate/binomial/</a>
 
+
+
 <h2 id="t-test">T-test</h2>
+
 A T-test is a statistical test used to determine if there is a significant difference between the means of two independent distribution. 
 Firstly, the null hypothesis is stated which in the following section is that the means of the two samples and are identical and thus the alternative
 hypothesis becomes that they are different. The T-statistic is calculated as a function of the two samples (INSERT EQUATION) and using a table it is possible
 to find the probability of the samples having identical means, thus the null hypothesis being correct. The probability of the null hypothesis being true is known as
 the P-value for the test. In this article we use a threshold of 5% for the P-value, meaning if the P-value is below 5% we reject the null hypothesis with 95% confidence
 and accept the alternative hypothesis. 
+
+
 
 <h2 id="clustering">Clustering</h2>
 
@@ -34,6 +41,7 @@ We use T-SNE to visually inspect the data for natural clusters that might also b
 We also use PCA in a similar fashion. PCA attempts to summarize the information in high dimensional data using a smaller set of uncorrelated variables called Principal Components (PCs) that capture most of the variance in the data. PCs are linear combinations of the original features. This makes PCA better than T-SNE for explainability as we can see how much each feature contributes to each principal component.
 
 Lets analyze all the data we have to get a feel for how it varies and also understand these methods and how they are used a bit better. 
+
 
 
 <h2 id="logistic-regression">Logistic regression</h2>
