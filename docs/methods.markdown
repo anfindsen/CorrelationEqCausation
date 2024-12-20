@@ -6,7 +6,14 @@ permalink: /methods/
 
 
 
-Here are some of the mathematical methods we use in this analysis:
+Here are some of the mathematical methods and concepts we use in this analysis:
+
+<h3 id="correlation" style="font-weight:bold;">Correlation</h3>
+No correlation implies that there is no causation. Hence this makes for a good starting point of our analysis.
+
+<h3 id="kolmogorov-smirnov" style="font-weight:bold;">Kolmogorov-Smirnov Test</h3>
+For different single dimensional, continuous empirical distributions, the KS test tells us if they come from the same underlying distribution. 
+Hence we can use it to see if for instance the underlying distributions of ratings of Oscar nominated and non-Oscar nominated movies is the same.
 
 <h3 id="binomial-test" style="font-weight:bold;">Binomial test</h3>
 
@@ -35,9 +42,9 @@ and accept the alternative hypothesis.
 
 <h3 id="clustering" style="font-weight:bold;">Clustering</h3>
 
-We use T-SNE to visually inspect the data for natural clusters that might also be informative about the chances of being nominated for oscars. T-SNE measures the closeness of pairs of points in higher dimensional spaces and then transforms the points to a lower dimension while trying to preserve this notion of closeness and distance  (i.e. points that were close in higher dimensions should stay close in the lower dimension and vice versa). This allows for easier visualization and handling of high dimensional data, but comes at the cost of interpretability, as we cannot exactly say how the original features contribute individually to the new features in the reduced space.
+We use **T-SNE** to visually inspect the data for natural clusters that might also be informative about the chances of being nominated for oscars. T-SNE measures the closeness of pairs of points in higher dimensional spaces and then transforms the points to a lower dimension while trying to preserve this notion of closeness and distance  (i.e. points that were close in higher dimensions should stay close in the lower dimension and vice versa). This allows for easier visualization and handling of high dimensional data, but comes at the cost of interpretability, as we cannot exactly say how the original features contribute individually to the new features in the reduced space.
 
-We also use PCA in a similar fashion. PCA attempts to summarize the information in high dimensional data using a smaller set of uncorrelated variables called Principal Components (PCs) that capture most of the variance in the data. PCs are linear combinations of the original features. This makes PCA better than T-SNE for explainability as we can see how much each feature contributes to each principal component.
+We also use **PCA** in a similar fashion. PCA attempts to summarize the information in high dimensional data using a smaller set of uncorrelated variables called Principal Components (PCs) that capture most of the variance in the data. PCs are linear combinations of the original features. This makes PCA better than T-SNE for explainability as we can see how much each feature contributes to each principal component.
 
 Lets analyze all the data we have to get a feel for how it varies and also understand these methods and how they are used a bit better. 
 
