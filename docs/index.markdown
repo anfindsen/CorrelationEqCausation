@@ -228,8 +228,15 @@ This indicates that there is no one feature widely used to make this prediction.
 <iframe src="{{ 'images/genres_wo_nominations.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
 
 <iframe src="{{ 'images/most_popular_genres.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
-
+There are clearly genres worth avoiding for oscar aspiring actors. For instance Absurdims, doomsday film, dystopia and holiday film to name a few. On the otherhand, there are also genres that have many actor nominations, e.g. Drama, Period, Romantic drama and Biography. However, they have many nominations partly because they have many movies. Hence, we can look at the genres with the highest share of oscar winners. 
 <iframe src="{{ 'images/genres_by_share2.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
+The genre with the highest share of oscar nominated performances is New Hollywood with 27% of performances being nominated. Coming second is Biographical film with only 8% of performances being nominated. With a time machine, travelling back to the 1960s-1980s would be the most optimal for an actor winning an oscar. Hence we will need to look at more recent successful genres. 
+<iframe src="{{ 'images/genres_by_share_new.html' | relative_url }}" width="80%" height="480px" frameborder="0"></iframe>
+
+In recent years, the most popular genres at the oscars has not had as high success rate as the most popular genres in earlier years. Up top is Period piece, Romantic drama and Crime Thriller. 
+
+
+
 ### **Prediction on movie features** - Melker (plots)/ Rasmus
 
 Let's look at if it is possible to predict if a movie will be nominated for an oscar from popular opinion. To do this we split the movies into two: movies, where at least one actor/actress was nominated, and movies where there weren't any.
