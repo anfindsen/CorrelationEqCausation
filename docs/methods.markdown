@@ -32,12 +32,10 @@ Source for this section: <a href="https://sites.utexas.edu/sos/guided/inferentia
 <h3 id="t-test" style="font-weight:bold;">T-test</h3>
 
 A T-test is a statistical test used to determine if there is a significant difference between the means of two independent distribution. 
-Firstly, the null hypothesis is stated which in the following section is that the means of the two samples and are identical and thus the alternative
-hypothesis becomes that they are different. The T-statistic is calculated as a function of the two samples (INSERT EQUATION) and using a table it is possible
-to find the probability of the samples having identical means, thus the null hypothesis being correct. The probability of the null hypothesis being true is known as
-the P-value for the test. In this article we use a threshold of 5% for the P-value, meaning if the P-value is below 5% we reject the null hypothesis with 95% confidence
-and accept the alternative hypothesis. 
 
+The first step of the T-test is stating the null hypothesis and the alternative hypothesis. The null hypothesis is that the means of the samples are similar while the alternative hypothesis is that the mean are different.
+
+After stating the hypothesis you assume the null hypothesis is true and calculate the T-statistic and corresponding P-value. The P-value is the probability of obtaining the result under the null hypothesis. If the P-value is low enough we can therefore safely reject the null hypothesis and assume the alternative hypothesis to be true. To determine which P-values are low enough we set a threshold at 0.05 meaning we reject the null hypothesis if the probability of obtaining the result and it being true is less than 5%.
 
 
 <h3 id="clustering" style="font-weight:bold;">Clustering</h3>
